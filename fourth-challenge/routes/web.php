@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [CityController::class, 'index']);
 
 Route::get('/cities', [CityController::class, 'index']);
+Route::delete('/cities/{city}', [CityController::class, 'destroy']);

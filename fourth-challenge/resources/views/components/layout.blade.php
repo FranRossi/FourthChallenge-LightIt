@@ -1,39 +1,42 @@
 <!doctype html>
 <html class="h-full bg-gray-100">
-<title>FourthChallenge</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="js/3.1.1.jquery.min.js"></script>
 
-<style>
-    html {
-        scroll-behavior: smooth;
-    }
+    <meta charset="utf-8">
 
-    .clamp {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-    }
+    <title>AirTour</title>
 
-    .clamp.one-line {
-        -webkit-line-clamp: 1;
-    }
-</style>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .clamp {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .clamp.one-line {
+            -webkit-line-clamp: 1;
+        }
+    </style>
+</head>
 
     <body class="h-full">
         <nav class="bg-indigo-600">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="flex h-16 items-center justify-between">
                 <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <img class="h-8 w-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300" alt="Your Company">
-                    </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline space-x-4">
                             <!-- Current: "bg-indigo-700 text-white", Default: "text-white hover:bg-indigo-500 hover:bg-opacity-75" -->
-                            <a href="#" class="bg-indigo-700 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</a>
+                            <a href="/cities" class="bg-indigo-700 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Cities</a>
 
                             <a href="#" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md px-3 py-2 text-sm font-medium">Team</a>
 

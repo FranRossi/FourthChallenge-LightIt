@@ -13,4 +13,10 @@ class CityController extends Controller
             'cities' => City::latest()->paginate(5)
         ]);
     }
+
+    public function destroy(City $city)
+    {
+        $city->delete();
+        return back()->with('success', 'City Deleted!');;
+    }
 }

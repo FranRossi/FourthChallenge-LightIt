@@ -68,7 +68,13 @@
                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, {{ $city->id }}</span></a>
                     </td>
                     <td class="relative whitespace-nowrap px-3 py-4 text-right text-sm ">
-                        <a href="#" class="text-indigo-600 hover:text-indigo-900">Delete<span class="sr-only">, {{ $city->id }}</span></a>
+                        <form class="delete-form" method="POST" action="/cities/{{$city->id}}" >
+                            @csrf
+                            @method('DELETE')
+                            <button class="delete-button text-sm text-red-400">
+                                Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -79,3 +85,22 @@
         {{ $cities->links() }}
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('.delete-button').click(function(e) {
+            e.preventDefault();
+
+            // Send an AJAX request to the server
+            $.ajax({
+                url: $('.delete-form').attr('action'),
+                type: 'DELETE',
+                data: $('.delete-form').serialize(),
+                success: function() {
+                    // Remove the deleted item from the list
+                    $('.delete-form').closest('tr').remove();
+                }
+            });
+        });
+    });
+</script>
