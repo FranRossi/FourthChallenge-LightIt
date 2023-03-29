@@ -2,7 +2,7 @@
 
 <div class="mt-6 flow-root">
     <div class="-mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
-        <table class="min-w-full divide-y divide-gray-300">
+        <table class="min-w-full divide-y divide-gray-300" id="cities-table">
             <thead>
             <tr>
                <x-table-header :name="'Id'"/>
@@ -28,7 +28,7 @@
                         <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, {{ $city->id }}</span></a>
                     </td>
                     <td class="relative whitespace-nowrap px-3 py-4 text-right text-sm ">
-                        <form class="delete-form" method="POST" action="/cities/{{$city->id}}" >
+                        <form class="delete-form" action="/cities/{{$city->id}}" id="{{$city->id}}" >
                             @csrf
                             @method('DELETE')
                             <button class="delete-button text-sm text-red-400">
@@ -46,4 +46,4 @@
     </div>
 </div>
 
-<script src="{{ asset('js/citiesCRUD.js') }}"></script>
+<script src="{{ asset('js/citiesTableAjax.js') }}"></script>
