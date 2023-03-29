@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\City;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CityController extends Controller
 {
     public function index()
     {
         return view('cities.index',[
-            'cities' => City::latest()->paginate(5)
+            'cities' => City::paginate(5)
         ]);
     }
 
@@ -38,7 +39,7 @@ class CityController extends Controller
     public function store()
     {
         City::create($this->validateCity());
-        return redirect('/')->with('success', 'City Created!');
+        return redirect('/cities')->with('success', 'City Created!');
     }
 
     protected function validateCity(City $city = null): array
@@ -46,8 +47,8 @@ class CityController extends Controller
         $city = $city ?: new City;
         return request()->validate([
             'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
-            'flights_arriving' => 'required',
-            'flights_departing' => 'required'
+            'flights_arriving' => ['required', 'integer'],
+            'flights_departing' => ['required', 'integer']
         ]);
     }
 
