@@ -19,4 +19,36 @@ class CityController extends Controller
         $city->delete();
         return back()->with('success', 'City Deleted!');;
     }
+
+    public function edit(City $city)
+    {
+        return view('cities.manage-form', ['city' => $city]);
+    }
+    public function update(City $city)
+    {
+        $city->update($this->validateCity());
+        return back()->with('success', 'City Updated!');
+    }
+
+    public function create()
+    {
+        return view('cities.manage-form');
+    }
+
+    public function store()
+    {
+        City::create($this->validateCity());
+        return redirect('/')->with('success', 'City Created!');
+    }
+
+    protected function validateCity(City $city = null): array
+    {
+        $city = $city ?: new City;
+        return request()->validate([
+            'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
+            'flights_arriving' => 'required',
+            'flights_departing' => 'required'
+        ]);
+    }
+
 }
