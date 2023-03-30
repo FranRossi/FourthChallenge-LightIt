@@ -1,9 +1,8 @@
 $(document).ready(function() {
-    $('.manage-form').on('submit', function(e) {
+    $('.create-form').on('submit', function(e) {
         e.preventDefault();
 
         var formData = $(this).serialize();
-        console.log(formData);
         $.ajax({
             type: 'POST',
             url: '/cities',
@@ -16,26 +15,31 @@ $(document).ready(function() {
 
                 // // Redirect to previous URL
                 window.location.href = document.referrer;
-                // Add new city to table
-                const newCity = response.city;
-                const tableRow = `
-                    <tr>
-                        <td>${newCity.name}</td>
-                        <td>${newCity.flights_arriving}</td>
-                        <td>${newCity.flights_departing}</td>
-                        <<td class="relative whitespace-nowrap px-3 py-4 text-right text-sm ">
-                            <form method="POST" action="/cities/${newCity.id}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="text-sm text-red-400">
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                `;
-                $('#cities-table tbody').append(tableRow);
-                console.log(response);
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+                console.log(error.message);
+            }
+        });
+    });
+});
+
+// Edit city
+$(document).ready(function() {
+    $('.edit-form').on('submit', function(e) {
+        e.preventDefault();
+
+        var formData = $(this).serialize();
+        var formId = $(this).closest('form').attr('id');
+        console.log(formData);
+        $.ajax({
+            type: 'PATCH',
+            url: '/cities/' + formId,
+            data: formData,
+            success: function(response) {
+                // Redirect to previous URL
+                window.location.href = document.referrer;
+
             },
             error: function(xhr, status, error) {
                 // Do something on error
@@ -43,3 +47,16 @@ $(document).ready(function() {
         });
     });
 });
+
+$(document).ready(function() {
+    $('.cancel-button').click(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            success: function() {
+                window.location.href = document.referrer;
+            }
+        });
+    });
+});
+

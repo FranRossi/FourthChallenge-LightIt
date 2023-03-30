@@ -22,23 +22,22 @@ class CityController extends Controller
 
     public function edit(City $city)
     {
-        return view('cities.manage-form', ['city' => $city]);
+        return view('cities.edit-form', ['city' => $city]);
     }
     public function update(City $city)
     {
-        $city->update($this->validateCity());
-        return back()->with('success', 'City Updated!');
+        $city->update($this->validateCity($city));
     }
 
     public function create()
     {
-        return view('cities.manage-form');
+        return view('cities.create-form');
     }
 
     public function store()
     {
         City::create($this->validateCity());
-        return redirect('/cities')->with('success', 'City Created!');
+        //return redirect('/cities')->with('success', 'City Created!');
     }
 
     protected function validateCity(City $city = null): array

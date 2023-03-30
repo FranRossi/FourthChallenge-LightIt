@@ -1,30 +1,12 @@
 
 // delete city
-// $(document).ready(function() {
-//     $('.delete-button').click(function(e) {
-//         e.preventDefault();
-//         console.log($('.delete-form').attr('action'))
-//         // Send an AJAX request to the server
-//         $.ajax({
-//             url: $('.delete-form').attr('action'),
-//             type: 'POST',
-//             data: $('.delete-form').serialize(),
-//             success: function() {
-//                 // Remove the deleted item from the list
-//                 $('.delete-form').closest('tr').remove();
-//
-//
-//             }
-//         });
-//     });
-// });
-
 $(document).ready(function() {
     $('.delete-button').click(function(e) {
         e.preventDefault();
 
         // Get the id of the current form
         var formId = $(this).closest('form').attr('id');
+        console.log(formId);
         var parentRow = $(this).closest('tr');
         // Send an AJAX request to the server
         $.ajax({
@@ -38,3 +20,4 @@ $(document).ready(function() {
         });
     });
 });
+
