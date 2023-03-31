@@ -20,7 +20,6 @@
             <tbody class="divide-y divide-gray-200 bg-white">
             @foreach($cities as $city)
                 <tr>
-
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-900">{{ $city->id }}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $city->name }}</td>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $city->flights_arriving }}</td>
@@ -46,4 +45,4 @@
     </div>
 </div>
 
-<script src="{{ asset('js/citiesTableAjax.js') }}"></script>
+<script src="{{ asset('js/cities/table.js') }}"></script>

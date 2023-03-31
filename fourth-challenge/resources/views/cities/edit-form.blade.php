@@ -72,6 +72,6 @@
 
 </div>
 
-<script src="{{ asset('js/citiesFormAjax.js') }}"></script>
+<script src="{{ asset('js/cities/form.js') }}"></script>
 
 </x-layout>

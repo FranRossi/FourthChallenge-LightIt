@@ -2,23 +2,23 @@ $(document).ready(function() {
     $('.create-form').on('submit', function(e) {
         e.preventDefault();
 
-        var formData = $(this).serialize();
+        const cityName = $("#new-city-name").val();
+        const token = $("input[name='_token']").val();
         $.ajax({
             type: 'POST',
-            url: '/cities',
-            data: formData,
+            url: 'cities',
+            data: {
+                name: cityName,
+                flights_arriving: 0,
+                flights_departing: 0,
+                _token: token
+            },
             success: function(response) {
-                // Clear the form inputs
-                $('#name').val('');
-                $('#flights_arriving').val('');
-                $('#flights_departing').val('');
-
-                // // Redirect to previous URL
-                window.location.href = document.referrer;
+                location.reload();
             },
             error: function(xhr, status, error) {
-                console.log(xhr.responseText);
-                console.log(error.message);
+                // {{TODO - add error handling}}}
+                alert("City could not be added");
             }
         });
     });

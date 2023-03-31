@@ -36,13 +36,14 @@ class CityController extends Controller
 
     public function store()
     {
-        City::create($this->validateCity());
-        //return redirect('/cities')->with('success', 'City Created!');
+        $city = City::create($this->validateCity());
+        return response()->json($city, 201);
     }
 
     protected function validateCity(City $city = null): array
     {
-        $city = $city ?: new City;
+        $city = $city ?: new City();
+
         return request()->validate([
             'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
             'flights_arriving' => ['required', 'integer'],
