@@ -7,8 +7,8 @@
             <tr>
                <x-table-header :name="'Id'"/>
                <x-table-header :name="'Name'"/>
-               <x-table-header :name="'Flights Departing'"/>
                <x-table-header :name="'Flights Arriving'"/>
+               <x-table-header :name="'Flights Departing'"/>
                 <th scope="col" class="relative px-3 py-3.5">
                     <span class="sr-only">Edit</span>
                 </th>

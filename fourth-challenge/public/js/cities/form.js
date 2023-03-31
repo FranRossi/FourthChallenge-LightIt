@@ -3,14 +3,16 @@ $(document).ready(function() {
         e.preventDefault();
 
         const cityName = $("#new-city-name").val();
+        const flightsDeparting = $("#flights-departing").val();
+        const flightsArriving = $("#flights-arriving").val();
         const token = $("input[name='_token']").val();
         $.ajax({
             type: 'POST',
             url: 'cities',
             data: {
                 name: cityName,
-                flights_arriving: 0,
-                flights_departing: 0,
+                flights_arriving: flightsArriving,
+                flights_departing: flightsDeparting,
                 _token: token
             },
             success: function(response) {

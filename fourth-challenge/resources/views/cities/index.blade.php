@@ -16,29 +16,43 @@
                             <p class="mt-2 text-sm text-gray-700">A list of all the cities in <strong>AirTour</strong>.</p>
                         </div>
 
-                        <form class="create-form sm:flex-auto ">
+                        <form class="create-form sm:flex justify-end">
                             @csrf
-                            <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-auto">
-                                <div class="mt-2">
-                                    <input type="text"
-                                           name="name"
-                                           id="new-city-name"
-                                           class="sm:flex-auto w-sm rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                           required
-                                           placeholder="Name of the city"
-                                    >
+                            <div class="flex flex-col sm:flex-row sm:items-center">
+                                <div class="sm:w-full sm:mr-4">
+                                    <label for="new-city-name" class="sr-only">Name of the city</label>
+                                    <div class="flex items-center border rounded-md shadow-sm ring-1 ring-inset ring-gray-300 py-3 px-2">
+                                        <input type="text"
+                                               name="name"
+                                               id="new-city-name"
+                                               class="w-48 mx-4 pl-2 rounded-md border-0 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 text-sm"
+                                               required
+                                               placeholder="Name of the city">
+                                        <input type="number"
+                                               name="flights_arriving"
+                                               id="flights-arriving"
+                                               class="w-24 mx-4 pl-2 rounded-md border-0 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 text-sm  ml-2"
+                                               required
+                                               placeholder="Arriving">
+                                        <input type="number"
+                                               name="flights_departing"
+                                               id="flights-departing"
+                                               class="w-24 ml-4 pl-2 rounded-md border-0 text-gray-900 placeholder-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 text-sm  ml-2"
+                                               required
+                                               placeholder="Departing">
+                                    </div>
                                     @error('name')
                                     <p class="text-red-500 text-xs italic">Error adding a city</p>
                                     @enderror
-    {{--                                <a href="/cities/create">--}}
-                                        <button type="sumbit" class="sm:flex-auto rounded-md bg-indigo-600 py-2 px-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                                            Add City
-                                        </button>
-    {{--                                </a>--}}
                                 </div>
-
+                                <div class="sm:w-1/2 mt-4 sm:mt-0">
+                                    <button type="submit"
+                                            class="w-full sm:w-auto rounded-md bg-indigo-600 py-2 px-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Add City
+                                    </button>
+                                </div>
                             </div>
-                    </form>
+                        </form>
                     </div>
                     <x-table  :cities="$cities">
                     </x-table>
