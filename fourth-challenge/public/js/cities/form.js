@@ -2,21 +2,23 @@ $(document).ready(function() {
     $('.create-form').on('submit', function(e) {
         e.preventDefault();
 
-        const cityName = $("#new-city-name").val();
-        const flightsDeparting = $("#flights-departing").val();
-        const flightsArriving = $("#flights-arriving").val();
-        const token = $("input[name='_token']").val();
+        const formData = $(this).serialize();
         $.ajax({
             type: 'POST',
             url: 'cities',
-            data: {
-                name: cityName,
-                flights_arriving: flightsArriving,
-                flights_departing: flightsDeparting,
-                _token: token
-            },
+            data: formData,
             success: function(response) {
-                location.reload();
+                let lastPage = $('#last-page').val();
+                const amountOfCities = $('#count-cities').val();
+                if (amountOfCities % 5 === 0){
+                    lastPage++;
+                }
+                window.location.href = window.location.href.split('?')[0] + '?page=' + lastPage;
+
+                // Reset the form inputs
+                $('#new-city-name').val('');
+                $('#flights-arriving').val('');
+                $('#flights-departing').val('');
             },
             error: function(xhr, status, error) {
                 // {{TODO - add error handling}}}
@@ -26,6 +28,8 @@ $(document).ready(function() {
     });
 });
 
+
+
 // Edit city
 $(document).ready(function() {
     $('.edit-form').on('submit', function(e) {
@@ -33,7 +37,6 @@ $(document).ready(function() {
 
         var formData = $(this).serialize();
         var formId = $(this).closest('form').attr('id');
-        console.log(formData);
         $.ajax({
             type: 'PATCH',
             url: '/cities/' + formId,

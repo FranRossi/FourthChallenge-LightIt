@@ -46,6 +46,8 @@
                                     @enderror
                                 </div>
                                 <div class="sm:w-1/2 mt-4 sm:mt-0">
+                                    <input type="hidden" id="last-page" value="{{$cities->lastPage()}}">
+                                    <input type="hidden" id="count-cities" value="{{$cities->count()}}">
                                     <button type="submit"
                                             class="w-full sm:w-auto rounded-md bg-indigo-600 py-2 px-3 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                         Add City

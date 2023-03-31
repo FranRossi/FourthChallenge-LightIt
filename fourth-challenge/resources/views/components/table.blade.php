@@ -30,7 +30,7 @@
                     <td class="relative whitespace-nowrap px-3 py-4 text-right text-sm ">
                         <form class="delete-form" id="{{$city->id}}" >
                             @csrf
-                            <button class="delete-button text-sm text-red-400">
+                            <button type="submit" class="delete-button text-sm text-red-400">
                                 Delete
                             </button>
                         </form>
