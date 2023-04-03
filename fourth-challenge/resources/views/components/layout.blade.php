@@ -145,5 +145,7 @@
         </div>
     </nav>
         {{ $slot }}
+
+        <x-flash/>
     </body>
 </html>

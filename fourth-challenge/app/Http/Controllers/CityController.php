@@ -26,7 +26,7 @@ class CityController extends Controller
     }
     public function update(City $city)
     {
-        $city->update($this->validateCity($city));
+        $city->update($this->validateCity($city))->with('success', 'City Updated!');
     }
 
     public function create()
@@ -36,7 +36,7 @@ class CityController extends Controller
 
     public function store()
     {
-        $city = City::create($this->validateCity());
+        $city = City::create($this->validateCity())->with('success', 'City Created!');
         return response()->json($city, 201);
     }
 
