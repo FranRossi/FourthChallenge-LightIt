@@ -28,7 +28,7 @@ class CityController extends Controller
     }
     public function update(City $city)
     {
-        $city->update($this->validateCity($city))->with('success', 'City Updated!');
+        $city->update($this->validateCity($city));
     }
 
     public function create()

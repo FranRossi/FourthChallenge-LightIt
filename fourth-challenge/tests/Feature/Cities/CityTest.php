@@ -30,7 +30,7 @@ class CityTest extends TestCase
     }
 
     /** @test */
-    public function index()
+    public function index_all_cities()
     {
         $this->withoutExceptionHandling();
 
@@ -48,6 +48,55 @@ class CityTest extends TestCase
                 'London',
             ]);
     }
+
+/** @test */
+    public function destroy_a_city()
+    {
+        $this->withoutExceptionHandling();
+
+        $city = City::factory()->create();
+
+        $this->delete(action([CityController::class, 'destroy'], $city))
+            ->assertSuccessful();
+
+        $this->assertDatabaseMissing(City::class, [
+            'id' => $city->id,
+        ]);
+    }
+
+/** @test */
+    public function update_a_city()
+    {
+        $this->withoutExceptionHandling();
+
+        $city = City::factory()->create([
+            'name' => 'New York City',
+            'flights_arriving' => 200,
+            'flights_departing' => 200,
+        ]);
+
+        $this->patch(action([CityController::class, 'update'], $city), [
+            'name' => 'Miami',
+            'flights_arriving' => 100,
+            'flights_departing' => 100,
+        ])
+            ->assertSuccessful();
+
+        $this->assertDatabaseHas(City::class, [
+            'id' => $city->id,
+            'name' => 'Miami',
+            'flights_arriving' => 100,
+            'flights_departing' => 100,
+        ])
+            ->assertDatabaseMissing(City::class, [
+                'id' => $city->id,
+                'name' => 'New York City',
+                'flights_arriving' => 200,
+                'flights_departing' => 200,
+            ]);
+        ;
+    }
+    
 
 
 
