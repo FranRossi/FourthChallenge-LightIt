@@ -8,12 +8,15 @@ $(document).ready(function() {
             url: 'cities',
             data: formData,
             success: function(response) {
-                let lastPage = $('#last-page').val();
-                const amountOfCities = $('#count-cities').val();
-                if (amountOfCities % 5 === 0){
-                    lastPage++;
-                }
-                window.location.href = window.location.href.split('?')[0] + '?page=' + lastPage;
+                // let lastPage = $('#last-page').val();
+                // const amountOfCities = $('#count-cities').val();
+                // if (amountOfCities % 5 === 0){
+                //     lastPage++;
+                // }
+                // console.log( window.location.href);
+                // window.location.href = window.location.href + '?page=' + lastPage;
+                // console.log( window.location.href);
+
 
                 // Reset the form inputs
                 $('#new-city-name').val('');
@@ -39,7 +42,7 @@ $(document).ready(function() {
         var formId = $(this).closest('form').attr('id');
         $.ajax({
             type: 'PATCH',
-            url: '/cities/' + formId,
+            url: 'cities/' + formId,
             data: formData,
             success: function(response) {
                 // Redirect to previous URL

@@ -1,6 +1,6 @@
-@props(['name'])
+@props(['name','currentColumn'])
 <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 ">
-    <a href="#" class="group inline-flex">
+    <a href="#" class="sort group inline-flex" data-column="{{$currentColumn}}" data-direction="{{ $currentColumn ?? $currentDirection ?? 'asc' }}">
         {{ $name}}
         <!-- Active: "bg-gray-200 text-gray-900 group-hover:bg-gray-300", Not Active: "invisible text-gray-400 group-hover:visible group-focus:visible" -->
         <span class="invisible ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">

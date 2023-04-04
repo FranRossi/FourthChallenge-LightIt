@@ -8,10 +8,12 @@ use Illuminate\Validation\Rule;
 
 class CityController extends Controller
 {
+    private $cityPerPage = 5;
+
     public function index()
     {
         return view('cities.index',[
-            'cities' => City::paginate(5)
+            'cities' => City::paginate($this->cityPerPage)
         ]);
     }
 
@@ -48,6 +50,19 @@ class CityController extends Controller
             'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
             'flights_arriving' => ['required', 'integer'],
             'flights_departing' => ['required', 'integer']
+        ]);
+    }
+
+    public function sort(Request $request)
+    {
+        $column = $request->input('column');
+        $direction = $request->input('direction');
+        $cities = $direction === 'asc' ? City::orderBy($column)->paginate($this->cityPerPage) : City::orderByDesc($column)->paginate($this->cityPerPage);
+
+        return view('components.table', [
+            'cities' => $cities,
+            'currentColumn' => $column,
+            'currentDirection' => $direction
         ]);
     }
 

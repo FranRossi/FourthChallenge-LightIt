@@ -56,8 +56,11 @@
                             </div>
                         </form>
                     </div>
-                    <x-table  :cities="$cities">
-                    </x-table>
+                    <div>
+                        <x-table  :cities="$cities" >
+                        </x-table>
+                    </div>
+
                 </div>
 
             </div>

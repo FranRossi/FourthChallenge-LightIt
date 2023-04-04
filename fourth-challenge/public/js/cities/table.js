@@ -24,5 +24,35 @@ $(document).ready(function() {
     });
 });
 
+$(document).ready(function () {
+    console.log("Binding click event handler...");
+    $('#table-container').on('click', '.sort', function (e) {
+        e.preventDefault();
+        let column = $(this).data('column');
+        let direction = $(this).data('direction') || 'asc';
 
+        direction = (direction === 'asc') ? 'desc' : 'asc';
+        // console.log(direction);
+        // console.log(column);
+        $(this).data('direction', direction);
+
+        $.ajax({
+            url: "cities/sort",
+            type: "GET",
+            data: {
+                column: column,
+                direction: direction
+            },
+            success: function (data) {
+                $('#table-container').html(data);
+                const newPaginationHtml = $(data).find('#pagination-container').html();
+                $('#pagination-container').html(newPaginationHtml);
+            },
+            error: function (xhr, error, status) {
+                console.log("Error:", xhr);
+                alert("Error al ordenar los datos");
+            }
+        });
+    });
+});
 
