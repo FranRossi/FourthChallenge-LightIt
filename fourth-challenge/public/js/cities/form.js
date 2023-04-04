@@ -13,7 +13,6 @@ $(document).ready(function() {
                 const newPaginationHtml = $(data).find('#pagination-container').html();
                 $('#pagination-container').html(newPaginationHtml);
 
-
                 // Reset the form inputs
                 $('#new-city-name').val('');
                 $('#flights-arriving').val('');
