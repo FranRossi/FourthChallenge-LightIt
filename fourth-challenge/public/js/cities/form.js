@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    console.log("Creando una ciudad");
     $('.create-form').on('submit', function(e) {
         e.preventDefault();
 
@@ -7,15 +8,10 @@ $(document).ready(function() {
             type: 'POST',
             url: 'cities',
             data: formData,
-            success: function(response) {
-                // let lastPage = $('#last-page').val();
-                // const amountOfCities = $('#count-cities').val();
-                // if (amountOfCities % 5 === 0){
-                //     lastPage++;
-                // }
-                // console.log( window.location.href);
-                // window.location.href = window.location.href + '?page=' + lastPage;
-                // console.log( window.location.href);
+            success: function(data) {
+                $('#table-container').html(data);
+                const newPaginationHtml = $(data).find('#pagination-container').html();
+                $('#pagination-container').html(newPaginationHtml);
 
 
                 // Reset the form inputs

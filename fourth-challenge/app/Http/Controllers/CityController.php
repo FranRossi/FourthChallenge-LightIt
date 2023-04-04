@@ -38,8 +38,11 @@ class CityController extends Controller
 
     public function store()
     {
-        $city = City::create($this->validateCity())->with('success', 'City Created!');
-        return response()->json($city, 201);
+        City::create($this->validateCity())->with('success', 'City Created!');
+        $cities = City::orderByDesc('id')->paginate($this->cityPerPage);
+        return view('components.table', [
+            'cities' => $cities
+        ]);
     }
 
     protected function validateCity(City $city = null): array
