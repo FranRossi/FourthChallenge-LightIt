@@ -94,9 +94,56 @@ class CityTest extends TestCase
                 'flights_arriving' => 200,
                 'flights_departing' => 200,
             ]);
-        ;
     }
-    
+
+    /** @test */
+    public function validate_a_city_fields(){
+
+        $city = City::factory()->create([
+            'name' => 'New York City',
+            'flights_arriving' => 200,
+            'flights_departing' => 200,
+        ]);
+
+        $this->patch(action([CityController::class, 'update'], $city), [
+            'name' => '',
+            'flights_arriving' => 100,
+            'flights_departing' => 100,
+        ])
+            ->assertSessionHasErrors('name');
+
+        $this->patch(action([CityController::class, 'update'], $city), [
+            'name' => 'Miami',
+            'flights_arriving' => '',
+            'flights_departing' => 100,
+        ])
+            ->assertSessionHasErrors('flights_arriving');
+
+        $this->patch(action([CityController::class, 'update'], $city), [
+            'name' => 'Miami',
+            'flights_arriving' => 100,
+            'flights_departing' => '',
+        ])
+            ->assertSessionHasErrors('flights_departing');
+
+    }
+
+    /** @test */
+    public function validate_a_city_is_unique(){
+
+        City::factory()->create([
+            'name' => 'New York City',
+            'flights_arriving' => 200,
+            'flights_departing' => 200,
+        ]);
+
+        $this->post(action([CityController::class, 'store']), [
+            'name' => 'New York City',
+            'flights_arriving' => 100,
+            'flights_departing' => 250,
+        ])
+            ->assertSessionHasErrors('name');
+    }
 
 
 
