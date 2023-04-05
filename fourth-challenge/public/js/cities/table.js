@@ -12,7 +12,7 @@ $(document).ready(function() {
         $.ajax({
             url: 'cities' + '/' + formId,
             type: 'DELETE',
-            data: $('.delete-form').serialize(),
+            data: formData,
             success: function() {
                 // Remove the deleted item from the list
                 parentRow.remove();

@@ -37,7 +37,7 @@ $(document).ready(function() {
         var formId = $(this).closest('form').attr('id');
         $.ajax({
             type: 'PATCH',
-            url: 'cities/' + formId,
+            url: '/cities/' + formId,
             data: formData,
             success: function(response) {
                 // Redirect to previous URL
@@ -45,7 +45,8 @@ $(document).ready(function() {
 
             },
             error: function(xhr, status, error) {
-                // Do something on error
+                // {{TODO - add error handling}}}
+                alert("City could not be edited");
             }
         });
     });
