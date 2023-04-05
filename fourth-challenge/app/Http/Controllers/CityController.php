@@ -51,8 +51,8 @@ class CityController extends Controller
 
         return request()->validate([
             'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
-            'flights_arriving' => ['required', 'integer'],
-            'flights_departing' => ['required', 'integer']
+            'flights_arriving' => ['required', 'integer', 'min:0', ],
+            'flights_departing' => ['required', 'integer', 'min:0',]
         ]);
     }
 
