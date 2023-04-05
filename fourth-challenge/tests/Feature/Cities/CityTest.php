@@ -95,7 +95,7 @@ class CityTest extends TestCase
                 'flights_departing' => 200,
             ]);
     }
-    
+
 
     /**
      * @test

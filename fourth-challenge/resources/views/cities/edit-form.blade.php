@@ -29,38 +29,6 @@
                     @enderror
                 </div>
             </div>
-
-            <div class="xs:col-span-1">
-                <label for="flights_arriving" class="block text-sm font-medium leading-6 text-gray-900">Flights Arriving</label>
-                <div class="mt-2">
-                    <input type="number"
-                           name="flights_arriving"
-                           id="flights_arriving"
-                           class="block w-sm rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                           required
-                           value="{{ $city->flights_arriving }}"
-                    >
-                    @error('flights_arriving')
-                    <p class="text-red-500 text-xs italic">No flights arriving</p>
-                    @enderror
-                </div>
-            </div>
-
-            <div class="sm:col-span-1">
-                <label for="flights_departing" class="block text-sm font-medium leading-6 text-gray-900">Flights Departing</label>
-                <div class="mt-2">
-                    <input type="number"
-                           name="flights_departing"
-                           id="flights_departing"
-                           class="block w-sm rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                           required
-                           value="{{ $city->flights_departing }}"
-                    >
-                    @error('flights_departing')
-                    <p class="text-red-500 text-xs italic">No flights arriving</p>
-                    @enderror
-                </div>
-            </div>
         </div>
       </div>
       <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 py-4 px-4 sm:px-8">

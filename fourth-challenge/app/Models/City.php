@@ -9,4 +9,20 @@ class City extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    protected $appends = ['flights_arriving', 'flights_departing'];
+
+    // Accessors
+    public function getFlightsArrivingAttribute()
+    {
+        return 0;
+        //return Flight::where('city_arrival_id', $this->id)->count();
+    }
+
+    public function getFlightsDepartingAttribute()
+    {
+        return 0;
+        //return Flight::where('city_departure_id', $this->id)->count();
+    }
+
 }

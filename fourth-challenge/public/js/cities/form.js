@@ -15,8 +15,8 @@ $(document).ready(function() {
 
                 // Reset the form inputs
                 $('#new-city-name').val('');
-                $('#flights-arriving').val('');
-                $('#flights-departing').val('');
+                // $('#flights-arriving').val('');
+                // $('#flights-departing').val('');
             },
             error: function(xhr, status, error) {
                 // {{TODO - add error handling}}}

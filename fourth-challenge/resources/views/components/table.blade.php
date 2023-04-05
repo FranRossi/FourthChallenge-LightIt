@@ -5,10 +5,10 @@
         <table class="min-w-full divide-y divide-gray-300" id="cities-table">
             <thead>
             <tr>
-               <x-table-header :name="'Id'" :currentColumn="'id'"/>
-               <x-table-header :name="'Name'" :currentColumn="'name'"/>
-               <x-table-header :name="'Flights Arriving'" :currentColumn="'flights_arriving'"/>
-               <x-table-header :name="'Flights Departing'" :currentColumn="'flights_departing'"/>
+               <x-table-header-sort :name="'Id'" :currentColumn="'id'"/>
+               <x-table-header-sort :name="'Name'" :currentColumn="'name'"/>
+               <x-table-header :name="'Flights Arriving'" />
+               <x-table-header :name="'Flights Departing'"/>
                 <th scope="col" class="relative px-3 py-3.5">
                     <span class="sr-only">Edit</span>
                 </th>

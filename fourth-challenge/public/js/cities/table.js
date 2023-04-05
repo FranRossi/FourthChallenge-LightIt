@@ -28,7 +28,7 @@ $(document).ready(function () {
     console.log("Binding click event handler...");
     $('#table-container').on('click', '.sort', function (e) {
         e.preventDefault();
-        let column = $(this).data('column');
+        let column = $(this).data('column') || 'id';
         let direction = $(this).data('direction') || 'asc';
 
         direction = (direction === 'asc') ? 'desc' : 'asc';

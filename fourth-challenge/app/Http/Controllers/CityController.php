@@ -51,17 +51,14 @@ class CityController extends Controller
 
         return request()->validate([
             'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
-            'flights_arriving' => ['required', 'integer', 'min:0', ],
-            'flights_departing' => ['required', 'integer', 'min:0',]
+//            'flights_arriving' => ['required', 'integer', 'min:0', ],
+//            'flights_departing' => ['required', 'integer', 'min:0',]
         ]);
     }
 
     public function sort(Request $request)
     {
         $column = $request->input('column');
-        if (!$this->validateColumnName($column)) {
-            return response()->json(['error' => 'Invalid column name'], 400);
-        }
         $direction = $request->input('direction');
         $cities = $direction === 'asc' ? City::orderBy($column)->paginate($this->cityPerPage) : City::orderByDesc($column)->paginate($this->cityPerPage);
 
@@ -74,7 +71,7 @@ class CityController extends Controller
 
     private function validateColumnName($column)
     {
-        return in_array($column, ['id', 'name', 'flights_arriving', 'flights_departing']);
+        return in_array($column, ['id', 'name']);
     }
 
 }
