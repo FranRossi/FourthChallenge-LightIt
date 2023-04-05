@@ -145,6 +145,4 @@ class CityTest extends TestCase
             ->assertSessionHasErrors('name');
     }
 
-
-
 }

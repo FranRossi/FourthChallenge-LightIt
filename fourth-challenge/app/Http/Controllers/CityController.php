@@ -13,7 +13,7 @@ class CityController extends Controller
     public function index()
     {
         return view('cities.index',[
-            'cities' => City::paginate($this->cityPerPage)
+            'cities' => City::orderByDesc('id')->paginate($this->cityPerPage)
         ]);
     }
 
