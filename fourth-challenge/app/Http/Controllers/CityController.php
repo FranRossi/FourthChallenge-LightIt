@@ -59,6 +59,9 @@ class CityController extends Controller
     public function sort(Request $request)
     {
         $column = $request->input('column');
+        if (!$this->validateColumnName($column)) {
+            return response()->json(['error' => 'Invalid column name'], 400);
+        }
         $direction = $request->input('direction');
         $cities = $direction === 'asc' ? City::orderBy($column)->paginate($this->cityPerPage) : City::orderByDesc($column)->paginate($this->cityPerPage);
 
@@ -67,6 +70,11 @@ class CityController extends Controller
             'currentColumn' => $column,
             'currentDirection' => $direction
         ]);
+    }
+
+    private function validateColumnName($column)
+    {
+        return in_array($column, ['id', 'name', 'flights_arriving', 'flights_departing']);
     }
 
 }

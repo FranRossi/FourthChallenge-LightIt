@@ -28,7 +28,7 @@ $(document).ready(function () {
     console.log("Binding click event handler...");
     $('#table-container').on('click', '.sort', function (e) {
         e.preventDefault();
-        let column = $(this).data('column') || 'id';
+        let column = $(this).data('column');
         let direction = $(this).data('direction') || 'asc';
 
         direction = (direction === 'asc') ? 'desc' : 'asc';
@@ -47,7 +47,6 @@ $(document).ready(function () {
                 $('#pagination-container').html(newPaginationHtml);
             },
             error: function (xhr, error, status) {
-                console.log("Error:", xhr);
                 alert("Error al ordenar los datos");
             }
         });
