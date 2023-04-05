@@ -13,7 +13,7 @@ class CityTest extends TestCase
      */
     public function test_example(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('cities');
 
         $response->assertStatus(200);
     }

@@ -40,12 +40,12 @@ class CityTest extends TestCase
         )
         ->create();
 
-        $this->get('/cities')
+        $this->get('cities')
             ->assertSuccessful()
             ->assertSee('Miami')
             ->assertSeeInOrder([
-                'Miami',
                 'London',
+                'Miami',
             ]);
     }
 
@@ -95,38 +95,42 @@ class CityTest extends TestCase
                 'flights_departing' => 200,
             ]);
     }
+    
 
-    /** @test */
-    public function validate_a_city_fields(){
-
+    /**
+     * @test
+     * @dataProvider cityFieldValidationProvider
+     */
+    public function validate_a_city_fields($input, $expectedError)
+    {
         $city = City::factory()->create([
             'name' => 'New York City',
             'flights_arriving' => 200,
             'flights_departing' => 200,
         ]);
 
-        $this->patch(action([CityController::class, 'update'], $city), [
-            'name' => '',
-            'flights_arriving' => 100,
-            'flights_departing' => 100,
-        ])
-            ->assertSessionHasErrors('name');
-
-        $this->patch(action([CityController::class, 'update'], $city), [
-            'name' => 'Miami',
-            'flights_arriving' => '',
-            'flights_departing' => 100,
-        ])
-            ->assertSessionHasErrors('flights_arriving');
-
-        $this->patch(action([CityController::class, 'update'], $city), [
-            'name' => 'Miami',
-            'flights_arriving' => 100,
-            'flights_departing' => '',
-        ])
-            ->assertSessionHasErrors('flights_departing');
-
+        $this->patch(action([CityController::class, 'update'], $city), $input)
+            ->assertSessionHasErrors($expectedError);
     }
+
+    public static function cityFieldValidationProvider()
+    {
+        return [
+            [
+                ['name' => '', 'flights_arriving' => 100, 'flights_departing' => 100],
+                'name'
+            ],
+            [
+                ['name' => 'Miami', 'flights_arriving' => '', 'flights_departing' => 100],
+                'flights_arriving'
+            ],
+            [
+                ['name' => 'Miami', 'flights_arriving' => 100, 'flights_departing' => ''],
+                'flights_departing'
+            ],
+        ];
+    }
+
 
     /** @test */
     public function validate_a_city_is_unique(){
