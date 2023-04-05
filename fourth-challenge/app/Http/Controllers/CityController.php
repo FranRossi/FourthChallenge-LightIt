@@ -47,7 +47,7 @@ class CityController extends Controller
 
     protected function validateCity(City $city = null): array
     {
-        $city = $city ?: new City();
+        $city = $city ?? new City();
 
         return request()->validate([
             'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
