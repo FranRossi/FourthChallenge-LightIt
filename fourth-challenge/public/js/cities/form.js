@@ -13,13 +13,9 @@ $(document).ready(function() {
                 const newPaginationHtml = $(data).find('#pagination-container').html();
                 $('#pagination-container').html(newPaginationHtml);
 
-                // Reset the form inputs
                 $('#new-city-name').val('');
-                // $('#flights-arriving').val('');
-                // $('#flights-departing').val('');
             },
             error: function(xhr, status, error) {
-                // {{TODO - add error handling}}}
                 alert("City could not be added");
             }
         });
@@ -27,14 +23,12 @@ $(document).ready(function() {
 });
 
 
-
-// Edit city
 $(document).ready(function() {
     $('.edit-form').on('submit', function(e) {
         e.preventDefault();
 
-        var formData = $(this).serialize();
-        var formId = $(this).closest('form').attr('id');
+        let formData = $(this).serialize();
+        let formId = $(this).closest('form').attr('id');
         $.ajax({
             type: 'PATCH',
             url: '/cities/' + formId,
@@ -45,12 +39,12 @@ $(document).ready(function() {
 
             },
             error: function(xhr, status, error) {
-                // {{TODO - add error handling}}}
                 alert("City could not be edited");
             }
         });
     });
 });
+
 
 $(document).ready(function() {
     $('.cancel-button').click(function(e) {

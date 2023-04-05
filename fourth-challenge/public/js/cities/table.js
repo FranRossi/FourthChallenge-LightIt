@@ -1,6 +1,4 @@
 
-
-// delete city
 $(document).ready(function() {
     $('.delete-form').on('submit', function(e) {
         e.preventDefault();
@@ -28,9 +26,9 @@ $(document).ready(function () {
     console.log("Binding click event handler...");
     $('#table-container').on('click', '.sort', function (e) {
         e.preventDefault();
-        let column = $(this).data('column') || 'id';
-        let direction = $(this).data('direction') || 'asc';
-
+        $column = $(this).data('column');
+        $direction = $(this).data('direction') || 'asc';
+        console.log("Sorting by column: " + column + " in direction: " + direction);
         direction = (direction === 'asc') ? 'desc' : 'asc';
         $(this).data('direction', direction);
 
@@ -38,8 +36,8 @@ $(document).ready(function () {
             url: "cities/sort",
             type: "GET",
             data: {
-                column: column,
-                direction: direction
+                column: $column,
+                direction: $direction
             },
             success: function (data) {
                 $('#table-container').html(data);
@@ -47,7 +45,7 @@ $(document).ready(function () {
                 $('#pagination-container').html(newPaginationHtml);
             },
             error: function (xhr, error, status) {
-                alert("Error al ordenar los datos");
+                alert(error.message);
             }
         });
     });
