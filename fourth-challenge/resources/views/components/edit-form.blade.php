@@ -27,6 +27,9 @@
 
     </div>
 
-    <script src="{{ asset('js/form.js') }}"></script>
-
+    @if($name == 'city')
+        <script src="{{ asset('js/form.js') }}"></script>
+    @elseif($name == 'airline')
+        <script src="{{ asset('js/form.js') }}"></script>
+    @endif
 </x-layout>

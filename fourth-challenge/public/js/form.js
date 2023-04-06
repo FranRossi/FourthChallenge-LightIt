@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log("Creando una ciudad");
     $('.create-form').on('submit', function(e) {
         e.preventDefault();
 

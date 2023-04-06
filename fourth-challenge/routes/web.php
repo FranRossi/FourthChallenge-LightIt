@@ -14,3 +14,5 @@ Route::get('cities/sort', [CityController::class, 'sort']);
 
 
 Route::get('airlines', [AirlineController::class, 'index']);
+Route::get('airlines/{airline}/edit', [AirlineController::class, 'edit']);
+Route::patch('airlines/{airline}', [AirlineController::class, 'update']);

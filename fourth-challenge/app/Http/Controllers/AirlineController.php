@@ -45,7 +45,6 @@ class AirlineController extends Controller
      */
     public function show(Airline $airline)
     {
-        //
     }
 
     /**
@@ -53,7 +52,10 @@ class AirlineController extends Controller
      */
     public function edit(Airline $airline)
     {
-        //
+        return view('components.edit-form', [
+            'object' => $airline,
+            'name' => 'airline'
+        ]);
     }
 
     /**
