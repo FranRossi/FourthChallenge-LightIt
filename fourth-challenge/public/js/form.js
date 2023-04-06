@@ -29,6 +29,8 @@ $(document).ready(function() {
 
         let formData = $(this).serialize();
         let formId = $(this).closest('form').attr('id');
+        console.log("Editando la ciudad con id: " + formId);
+        console.log(formData);
         $.ajax({
             type: 'PATCH',
             url: '/cities/' + formId,

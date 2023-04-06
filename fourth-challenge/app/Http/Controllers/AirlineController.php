@@ -9,7 +9,8 @@ use App\Models\Airline;
 class AirlineController extends Controller
 {
     private int $cityPerPage = 5;
-    private array $columns = ['Id', 'Name', 'Description', 'Amount of Flights'];
+    private array $columnsToSort = ['Id', 'Name'];
+    private array $columns = ['Description', 'Amount of Flights'];
     /**
      * Display a listing of the resource.
      */
@@ -18,6 +19,7 @@ class AirlineController extends Controller
         return view('components.index',[
             'objects' => Airline::orderByDesc('id')->paginate($this->cityPerPage),
             'name' => 'Airlines',
+            'columnsToSort' => $this->columnsToSort,
             'columns' => $this->columns
         ]);
     }

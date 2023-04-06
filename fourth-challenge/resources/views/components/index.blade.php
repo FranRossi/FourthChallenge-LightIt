@@ -37,7 +37,7 @@
                         </form>
                     </div>
                     <div>
-                        <x-table :objects="$objects" :columns="$columns" >
+                        <x-table :objects="$objects" :columns="$columns" :columnsToSort="$columnsToSort" :name="$name">
                         </x-table>
                     </div>
                 </div>
@@ -46,5 +46,5 @@
         </main>
     </div>
 
-<script src="{{ asset('js/cities/form.js') }}"></script>
+<script src="{{ asset('js/form.js') }}"></script>
 </x-layout>

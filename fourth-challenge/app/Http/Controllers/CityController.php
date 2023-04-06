@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
 class CityController extends Controller
 {
     private int $cityPerPage = 5;
-    private array $columns = ['Id', 'Name', 'Flights Arriving', 'Flights Departing'];
+    private array $columnsToSort = ['Id', 'Name'];
+    private array $columns = ['Flights Arriving', 'Flights Departing'];
 
     public function index()
     {
         return view('components.index',[
             'objects' => City::orderByDesc('id')->paginate($this->cityPerPage),
             'columns' => $this->columns,
+            'columnsToSort' => $this->columnsToSort,
             'name' => 'Cities'
         ]);
     }
@@ -27,7 +29,10 @@ class CityController extends Controller
 
     public function edit(City $city)
     {
-        return view('cities.edit-form', ['city' => $city]);
+        return view('components.edit-form', [
+            'object' => $city,
+            'name' => 'city'
+        ]);
     }
     public function update(StoreUpdateCityRequest $request, City $city)
     {
