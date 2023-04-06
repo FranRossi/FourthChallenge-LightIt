@@ -12,7 +12,7 @@
      @csrf
       <div class="px-4 py-6 sm:p-8">
         <div class="grid max-w-sm grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-1">
-            <x-input-field :label="'name'" :city="$city"/>
+            <x-input-field :name="'name'" :object="$city"/>
         </div>
       </div>
       <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 py-4 px-4 sm:px-8">

@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUpdateCityRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class CityController extends Controller
 {
-    private $cityPerPage = 5;
+    private int $cityPerPage = 5;
+    private array $columns = ['Id', 'Name', 'Flights Arriving', 'Flights Departing'];
 
     public function index()
     {
-        return view('cities.index',[
-            'cities' => City::orderByDesc('id')->paginate($this->cityPerPage)
+        return view('components.index',[
+            'objects' => City::orderByDesc('id')->paginate($this->cityPerPage),
+            'columns' => $this->columns,
+            'name' => 'Cities'
         ]);
     }
 
@@ -51,13 +53,13 @@ class CityController extends Controller
     {
         $column = $request->input('column');
         if (!$this->validateColumnName($column)) {
-            return response()->json(['error' => $column], 400);
+            return response()->json(['error' => 'Invalid column name'], 400);
         }
         $direction = $request->input('direction');
         $cities = $direction === 'asc' ? City::orderBy($column)->paginate($this->cityPerPage) : City::orderByDesc($column)->paginate($this->cityPerPage);
 
         return view('components.table', [
-            'cities' => $cities,
+            'objects' => $cities,
             'currentColumn' => $column,
             'currentDirection' => $direction
         ]);

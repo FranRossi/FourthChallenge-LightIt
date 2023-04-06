@@ -8,12 +8,18 @@ use App\Models\Airline;
 
 class AirlineController extends Controller
 {
+    private int $cityPerPage = 5;
+    private array $columns = ['Id', 'Name', 'Description', 'Amount of Flights'];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('components.index',[
+            'objects' => Airline::orderByDesc('id')->paginate($this->cityPerPage),
+            'name' => 'Airlines',
+            'columns' => $this->columns
+        ]);
     }
 
     /**

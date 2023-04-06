@@ -37,7 +37,7 @@
                         <div class="ml-10 flex items-baseline space-x-4">
                             <a href="/cities" class="bg-indigo-700 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Cities</a>
 
-                            <a href="#" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md px-3 py-2 text-sm font-medium">Team</a>
+                            <a href="/airlines" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md px-3 py-2 text-sm font-medium">Airlines</a>
 
                             <a href="#" class="text-white hover:bg-indigo-500 hover:bg-opacity-75 rounded-md px-3 py-2 text-sm font-medium">Projects</a>
 

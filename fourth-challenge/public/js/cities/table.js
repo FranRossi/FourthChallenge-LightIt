@@ -43,7 +43,7 @@ $(document).ready(function () {
                 $('#pagination-container').html(newPaginationHtml);
             },
             error: function (xhr, error, status) {
-                alert(error.message + "Error when sorting");
+                alert("Error when sorting");
             }
         });
     });

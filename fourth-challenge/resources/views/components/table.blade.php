@@ -1,4 +1,4 @@
-@props(['cities'])
+@props(['objects', 'columns'])
 
 <div class="mt-6 flow-root" id="table-container">
     <div class="-mx-4 mt-10 ring-1 ring-gray-300 sm:mx-0 sm:rounded-lg">
@@ -17,11 +17,11 @@
                 </th>
             </tr>
             </thead>
-                <x-table-body :cities="$cities"/>
+                <x-table-body :cities="$objects"/>
         </table>
     </div>
     <div class="mt-3 mx-4" id="pagination-container">
-        {{ $cities->links() }}
+        {{ $objects->links() }}
     </div>
 </div>
 
