@@ -17,15 +17,11 @@ class CityTest extends TestCase
 
         $this->post(action([CityController::class, 'store']),
             [
-            'name' => 'Miami',
-            'flights_arriving' => 100,
-            'flights_departing' => 100,
+            'name' => 'Miami'
         ]);
 
         $this->assertDatabaseHas(City::class, [
-            'name' => 'Miami',
-            'flights_arriving' => 100,
-            'flights_departing' => 100,
+            'name' => 'Miami'
         ]);
     }
 
@@ -70,29 +66,21 @@ class CityTest extends TestCase
         $this->withoutExceptionHandling();
 
         $city = City::factory()->create([
-            'name' => 'New York City',
-            'flights_arriving' => 200,
-            'flights_departing' => 200,
+            'name' => 'New York City'
         ]);
 
         $this->patch(action([CityController::class, 'update'], $city), [
-            'name' => 'Miami',
-            'flights_arriving' => 100,
-            'flights_departing' => 100,
+            'name' => 'Miami'
         ])
             ->assertSuccessful();
 
         $this->assertDatabaseHas(City::class, [
             'id' => $city->id,
-            'name' => 'Miami',
-            'flights_arriving' => 100,
-            'flights_departing' => 100,
+            'name' => 'Miami'
         ])
             ->assertDatabaseMissing(City::class, [
                 'id' => $city->id,
-                'name' => 'New York City',
-                'flights_arriving' => 200,
-                'flights_departing' => 200,
+                'name' => 'New York City'
             ]);
     }
 
@@ -105,8 +93,6 @@ class CityTest extends TestCase
     {
         $city = City::factory()->create([
             'name' => 'New York City',
-            'flights_arriving' => 200,
-            'flights_departing' => 200,
         ]);
 
         $this->patch(action([CityController::class, 'update'], $city), $input)
@@ -117,16 +103,8 @@ class CityTest extends TestCase
     {
         return [
             [
-                ['name' => '', 'flights_arriving' => 100, 'flights_departing' => 100],
+                ['name' => ''],
                 'name'
-            ],
-            [
-                ['name' => 'Miami', 'flights_arriving' => '', 'flights_departing' => 100],
-                'flights_arriving'
-            ],
-            [
-                ['name' => 'Miami', 'flights_arriving' => 100, 'flights_departing' => ''],
-                'flights_departing'
             ],
         ];
     }
@@ -136,15 +114,11 @@ class CityTest extends TestCase
     public function validate_a_city_is_unique(){
 
         City::factory()->create([
-            'name' => 'New York City',
-            'flights_arriving' => 200,
-            'flights_departing' => 200,
+            'name' => 'New York City'
         ]);
 
         $this->post(action([CityController::class, 'store']), [
-            'name' => 'New York City',
-            'flights_arriving' => 100,
-            'flights_departing' => 250,
+            'name' => 'New York City'
         ])
             ->assertSessionHasErrors('name');
     }

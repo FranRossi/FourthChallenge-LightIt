@@ -3,9 +3,9 @@ $(document).ready(function() {
     $('.delete-form').on('submit', function(e) {
         e.preventDefault();
         // Get the id of the current form
-        var formId = $(this).closest('form').attr('id');
-        var parentRow = $(this).closest('tr');
-        var formData = $('.delete-form').serialize();
+        let formId = $(this).closest('form').attr('id');
+        let parentRow = $(this).closest('tr');
+        let formData = $('.delete-form').serialize();
         // Send an AJAX request to the server
         $.ajax({
             url: 'cities' + '/' + formId,
@@ -23,21 +23,19 @@ $(document).ready(function() {
 });
 
 $(document).ready(function () {
-    console.log("Binding click event handler...");
     $('#table-container').on('click', '.sort', function (e) {
         e.preventDefault();
-        $column = $(this).data('column');
-        $direction = $(this).data('direction') || 'asc';
-        console.log("Sorting by column: " + column + " in direction: " + direction);
+        let column = $(this).data('column') || 'id';
+        let direction = $(this).data('direction') || 'asc';
+
         direction = (direction === 'asc') ? 'desc' : 'asc';
         $(this).data('direction', direction);
-
         $.ajax({
             url: "cities/sort",
             type: "GET",
             data: {
-                column: $column,
-                direction: $direction
+                column: column,
+                direction: direction
             },
             success: function (data) {
                 $('#table-container').html(data);
@@ -45,7 +43,7 @@ $(document).ready(function () {
                 $('#pagination-container').html(newPaginationHtml);
             },
             error: function (xhr, error, status) {
-                alert(error.message);
+                alert(error.message + "Error when sorting");
             }
         });
     });

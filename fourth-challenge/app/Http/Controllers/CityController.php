@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUpdateCityRequest;
 use App\Models\City;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -26,9 +27,9 @@ class CityController extends Controller
     {
         return view('cities.edit-form', ['city' => $city]);
     }
-    public function update(City $city)
+    public function update(StoreUpdateCityRequest $request, City $city)
     {
-        $city->update($this->validateCity($city));
+        $city->update($request->validated());
     }
 
     public function create()
@@ -36,21 +37,13 @@ class CityController extends Controller
         return view('cities.create-form');
     }
 
-    public function store()
+    public function store(StoreUpdateCityRequest $request)
     {
-        City::create($this->validateCity())->with('success', 'City Created!');
+        $validated = $request->validated();
+        City::create($validated)->with('success', 'City Created!');
         $cities = City::orderByDesc('id')->paginate($this->cityPerPage);
         return view('components.table', [
             'cities' => $cities
-        ]);
-    }
-
-    protected function validateCity(City $city = null): array
-    {
-        $city = $city ?? new City();
-
-        return request()->validate([
-            'name' => ['required', Rule::unique('cities', 'name')->ignore($city)],
         ]);
     }
 
