@@ -28,8 +28,8 @@
     </div>
 
     @if($name == 'city')
-        <script src="{{ asset('js/form.js') }}"></script>
+        <script src="{{ asset('js/cities/form.js') }}"></script>
     @elseif($name == 'airline')
-        <script src="{{ asset('js/form.js') }}"></script>
+        <script src="{{ asset('js/airline/form.js') }}"></script>
     @endif
 </x-layout>

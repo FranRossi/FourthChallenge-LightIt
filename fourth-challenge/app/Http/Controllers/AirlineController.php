@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreAirlineRequest;
-use App\Http\Requests\UpdateAirlineRequest;
+use App\Http\Requests\StoreUpdateAirlineRequest;
 use App\Models\Airline;
 
 class AirlineController extends Controller
 {
-    private int $cityPerPage = 5;
+    private int $airlinePerPage = 5;
     private array $columnsToSort = ['Id', 'Name'];
     private array $columns = ['Description', 'Amount of Flights'];
     /**
@@ -17,7 +16,7 @@ class AirlineController extends Controller
     public function index()
     {
         return view('components.index',[
-            'objects' => Airline::orderByDesc('id')->paginate($this->cityPerPage),
+            'objects' => Airline::orderByDesc('id')->paginate($this->airlinePerPage),
             'name' => 'Airlines',
             'columnsToSort' => $this->columnsToSort,
             'columns' => $this->columns
@@ -25,26 +24,19 @@ class AirlineController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAirlineRequest $request)
+    public function store(StoreUpdateAirlineRequest $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Airline $airline)
-    {
+        $validated = $request->validated();
+        Airline::create($validated)->with('success', 'Airline Created!');
+        $airlines = Airline::orderByDesc('id')->paginate($this->airlinePerPage);
+        return view('components.table', [
+            'objects' => $airlines,
+            'columns' => $this->columns,
+            'columnsToSort' => $this->columnsToSort,
+            'name' => 'Airlines'
+        ]);
     }
 
     /**
@@ -61,9 +53,9 @@ class AirlineController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAirlineRequest $request, Airline $airline)
+    public function update(StoreUpdateAirlineRequest $request, Airline $airline)
     {
-        //
+        $airline->update($request->validated());
     }
 
     /**
@@ -71,6 +63,6 @@ class AirlineController extends Controller
      */
     public function destroy(Airline $airline)
     {
-        //
+        $airline->delete();
     }
 }

@@ -39,18 +39,16 @@ class CityController extends Controller
         $city->update($request->validated());
     }
 
-    public function create()
-    {
-        return view('cities.create-form');
-    }
-
     public function store(StoreUpdateCityRequest $request)
     {
         $validated = $request->validated();
         City::create($validated)->with('success', 'City Created!');
         $cities = City::orderByDesc('id')->paginate($this->cityPerPage);
         return view('components.table', [
-            'cities' => $cities
+            'objects' => $cities,
+            'columns' => $this->columns,
+            'columnsToSort' => $this->columnsToSort,
+            'name' => 'Cities'
         ]);
     }
 

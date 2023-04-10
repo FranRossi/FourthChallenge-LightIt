@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Airline;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAirlineRequest extends FormRequest
+class StoreUpdateAirlineRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,12 +19,13 @@ class UpdateAirlineRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, Rule|array|string>
      */
     public function rules(): array
     {
+        $airline = $airline ?? new Airline();
         return [
-            //
+            'name' => ['required', Rule::unique('airlines', 'name')->ignore($airline)],
         ];
     }
 }

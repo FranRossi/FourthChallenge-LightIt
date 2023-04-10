@@ -46,5 +46,9 @@
         </main>
     </div>
 
-<script src="{{ asset('js/form.js') }}"></script>
+@if($name == 'Cities')
+    <script src="{{ asset('js/cities/form.js') }}"></script>
+@elseif($name == 'Airlines')
+    <script src="{{ asset('js/airlines/form.js') }}"></script>
+@endif
 </x-layout>
