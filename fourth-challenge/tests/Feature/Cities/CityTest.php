@@ -5,7 +5,6 @@ namespace Tests\Feature\Cities;
 use App\Http\Controllers\CityController;
 use App\Models\City;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class CityTest extends TestCase
 {

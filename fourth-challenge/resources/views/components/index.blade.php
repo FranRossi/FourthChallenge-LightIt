@@ -24,7 +24,7 @@
                                                placeholder="Name of the {{$name}}">
                                     </div>
                                     @error('name')
-                                    <p class="text-red-500 text-xs italic">Error adding a {{$name}}</p>
+                                        <p class="text-red-500 text-xs italic">Error adding a {{$name}}</p>
                                     @enderror
                                 </div>
                                 <div class="sm:w-1/2 mt-4 sm:mt-0">

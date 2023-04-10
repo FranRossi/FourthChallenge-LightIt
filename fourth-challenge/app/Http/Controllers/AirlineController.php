@@ -31,7 +31,7 @@ class AirlineController extends Controller
         $validated = $request->validated();
         Airline::create($validated)->with('success', 'Airline Created!');
         $airlines = Airline::orderByDesc('id')->paginate($this->airlinePerPage);
-        return view('components.table', [
+        return view('components.table',[
             'objects' => $airlines,
             'columns' => $this->columns,
             'columnsToSort' => $this->columnsToSort,

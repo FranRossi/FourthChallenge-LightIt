@@ -13,7 +13,7 @@ class StoreUpdateAirlineRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class StoreUpdateAirlineRequest extends FormRequest
      *
      * @return array<string, Rule|array|string>
      */
-    public function rules(): array
+    public function rules(Airline $airline = null): array
     {
         $airline = $airline ?? new Airline();
         return [

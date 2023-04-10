@@ -2,22 +2,45 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.querySelector('.create-form').addEventListener('submit', function(e) {
         e.preventDefault();
-
-        const formData = new FormData(this);
-        fetch('cities', {
+        const token = document.querySelector("input[name='_token']").value;
+        const airlineName = document.querySelector("#new-Airlines-name").value;
+        fetch('airlines', {
             method: 'POST',
-            body: formData
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': token
+            },
+            body: JSON.stringify({
+                name: airlineName,
+            })
         })
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Airline could not be added");
+                }
+                return response.text();
+            })
             .then(data => {
-                document.querySelector('#table-container').innerHTML = data;
-                const newPaginationHtml = new DOMParser().parseFromString(data, 'text/html').querySelector('#pagination-container').innerHTML;
-                document.querySelector('#pagination-container').innerHTML = newPaginationHtml;
+                const tableContainer = document.querySelector("#table-container");
+                tableContainer.innerHTML = data;
 
-                document.querySelector('#new-city-name').value = '';
+                const newPaginationHtml = $(data).find('#pagination-container').html();
+                $('#pagination-container').html(newPaginationHtml);
             })
             .catch(error => {
-                alert("City could not be added");
+                alert("Airline could not be added");
             });
+    });
+});
+
+$(document).ready(function() {
+    $('.cancel-button').click(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            success: function() {
+                window.location.href = document.referrer;
+            }
+        });
     });
 });

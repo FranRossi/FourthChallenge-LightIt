@@ -13,7 +13,7 @@ Route::get('cities/sort', [CityController::class, 'sort']);
 
 
 Route::get('airlines', [AirlineController::class, 'index']);
+Route::post('airlines', [AirlineController::class, 'store']);
 Route::get('airlines/{airline}/edit', [AirlineController::class, 'edit']);
 Route::patch('airlines/{airline}', [AirlineController::class, 'update']);
-Route::post('airlines', [AirlineController::class, 'store']);
 Route::delete('airlines/{airline}', [AirlineController::class, 'destroy']);
