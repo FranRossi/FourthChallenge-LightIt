@@ -39,7 +39,7 @@ $(document).ready(function() {
 
         $.ajax({
             success: function() {
-                window.location.href = document.referrer;
+                window.location.href = document.location.origin + '/airlines';
             }
         });
     });

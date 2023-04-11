@@ -3,7 +3,7 @@
 use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Route;
 
-ROute::prefix('cities')->group(function () {
+Route::prefix('cities')->group(function () {
     Route::get('/', [CityController::class, 'index']);
     Route::delete('/{city}', [CityController::class, 'destroy']);
     Route::patch('/{city}', [CityController::class, 'update']);
