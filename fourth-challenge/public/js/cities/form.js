@@ -33,9 +33,8 @@ $(document).ready(function() {
             type: 'PATCH',
             url: '/cities/' + formId,
             data: formData,
-            success: function(response) {
-                // Redirect to previous URL
-                window.location.href = document.referrer;
+            success: function() {
+                window.location.href = document.location.origin + '/cities';
 
             },
             error: function(xhr, status, error) {
@@ -52,7 +51,7 @@ $(document).ready(function() {
 
         $.ajax({
             success: function() {
-                window.location.href = document.referrer;
+                window.location.href = document.location.origin + '/cities';;
             }
         });
     });

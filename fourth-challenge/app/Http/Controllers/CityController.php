@@ -55,17 +55,20 @@ class CityController extends Controller
         }
         $direction = $request->input('direction');
         $cities = $direction === 'asc' ? City::orderBy($column)->paginate($this->cityPerPage) : City::orderByDesc($column)->paginate($this->cityPerPage);
-
         return view('components.table', [
             'cities' => $cities,
             'currentColumn' => $column,
-            'currentDirection' => $direction
+            'currentDirection' => $direction,
+            'columns' => $this->columns,
+            'columnsToSort' => $this->columnsToSort,
+            'name' => 'Cities'
         ]);
     }
 
     private function validateColumnName($column)
     {
-        return in_array($column, ['id', 'name']);
+        $columnsToCheck = array_map('strtolower', $this->columnsToSort);
+        return in_array($column, $columnsToCheck);
     }
 
 }

@@ -3,11 +3,23 @@
 use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Route;
 
+ROute::prefix('cities')->group(function () {
+    Route::get('/', [CityController::class, 'index']);
+    Route::delete('/{city}', [CityController::class, 'destroy']);
+    Route::patch('/{city}', [CityController::class, 'update']);
+    Route::post('/', [CityController::class, 'store']);
+    Route::get('/{city}/edit', [CityController::class, 'edit']);
+    Route::get('/sort', [CityController::class, 'sort']);
+});
 
-Route::get('cities', [CityController::class, 'index']);
-Route::delete('cities/{city}', [CityController::class, 'destroy']);
-Route::patch('cities/{city}', [CityController::class, 'update']);
-Route::post('cities', [CityController::class, 'store']);
-Route::get('cities/create', [CityController::class, 'create']);
-Route::get('cities/{city}/edit', [CityController::class, 'edit']);
-Route::get('cities/sort', [CityController::class, 'sort']);
+Route::prefix('airlines')->group(function () {
+    Route::get('/', [AirlineController::class, 'index']);
+    Route::delete('/{airline}', [AirlineController::class, 'destroy']);
+    Route::patch('/{airline}', [AirlineController::class, 'update']);
+    Route::post('/', [AirlineController::class, 'store']);
+    Route::get('/{airline}/edit', [AirlineController::class, 'edit']);
+});
+
+
+
+Route::get('flights', [view('components.date')]);
