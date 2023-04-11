@@ -58,4 +58,30 @@ class AirlineTest extends TestCase
             'id' => $airline->id,
         ]);
     }
+
+    /** @test */
+    public function update_an_airlines()
+    {
+        $this->withoutExceptionHandling();
+
+        $airline = Airline::factory()->create([
+            'name' => 'American Airlines'
+        ]);
+
+        $this->patch(action([AirlineController::class, 'update'], $airline), [
+            'name' => 'American'
+        ])
+            ->assertSuccessful();
+
+        $this->assertDatabaseHas(Airline::class, [
+            'id' => $airline->id,
+            'name' => 'American'
+        ])
+            ->assertDatabaseMissing(Airline::class, [
+                'id' => $airline->id,
+                'name' => 'American Airlines'
+            ]);
+    }
+
+
 }
