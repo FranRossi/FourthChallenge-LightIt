@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    console.log("Creando una ciudad");
     $('.create-form').on('submit', function(e) {
         e.preventDefault();
 
@@ -12,7 +13,7 @@ $(document).ready(function() {
                 const newPaginationHtml = $(data).find('#pagination-container').html();
                 $('#pagination-container').html(newPaginationHtml);
 
-                $('#new-Cities-name').val('');
+                $('#new-city-name').val('');
             },
             error: function(xhr, status, error) {
                 alert("City could not be added");
@@ -32,7 +33,8 @@ $(document).ready(function() {
             type: 'PATCH',
             url: '/cities/' + formId,
             data: formData,
-            success: function() {
+            success: function(response) {
+                // Redirect to previous URL
                 window.location.href = document.referrer;
 
             },
