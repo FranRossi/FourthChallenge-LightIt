@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    document.querySelector('.create-form').addEventListener('submit', function(e) {
+    $('.create-form').on('submit', function(e) {
         e.preventDefault();
         const token = document.querySelector("input[name='_token']").value;
         const airlineName = document.querySelector("#new-Airlines-name").value;
@@ -44,3 +44,39 @@ $(document).ready(function() {
         });
     });
 });
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const editForms = document.querySelectorAll('.edit-form');
+
+    editForms.forEach(form => {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const token = document.querySelector("input[name='_token']").value;
+            const airlineName = document.querySelector("#name").value;
+            const formId = form.getAttribute('id');
+
+            fetch(`/airlines/${formId}`, {
+                method: 'PATCH',
+                body: JSON.stringify({
+                    name: airlineName,
+                }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': token
+                }
+            })
+                .then(response => {
+                    if(response.ok) {
+                        window.location.href = document.referrer;
+                    } else {
+                        throw new Error('City could not be edited');
+                    }
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        });
+    });
+});
+
