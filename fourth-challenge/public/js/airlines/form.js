@@ -39,7 +39,7 @@ $(document).ready(function() {
 
         $.ajax({
             success: function() {
-                window.location.href = document.referrer;
+                window.location.href = document.location.origin + '/airlines';
             }
         });
     });
@@ -68,9 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
             })
                 .then(response => {
                     if(response.ok) {
-                        window.location.href = document.referrer;
-                    } else {
-                        throw new Error('City could not be edited');
+                        window.location.href = document.location.origin + '/airlines';
+                    } else if (response.status === 405) {
+                        throw new Error('The new airline\'s name did not pass validation');
+                    }else {
+                        throw new Error('Airline could not be edited');
                     }
                 })
                 .catch(error => {

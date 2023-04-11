@@ -70,7 +70,8 @@ class CityController extends Controller
 
     private function validateColumnName($column)
     {
-        return in_array($column, ['id', 'name']);
+        $columnsToCheck = array_map('strtolower', $this->columnsToSort);
+        return in_array($column, $columnsToCheck);
     }
 
 }

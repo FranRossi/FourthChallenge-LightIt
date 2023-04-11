@@ -33,7 +33,7 @@ $(document).ready(function() {
             url: '/cities/' + formId,
             data: formData,
             success: function() {
-                window.location.href = document.referrer;
+                window.location.href = document.location.origin + '/cities';
 
             },
             error: function(xhr, status, error) {
@@ -50,7 +50,7 @@ $(document).ready(function() {
 
         $.ajax({
             success: function() {
-                window.location.href = document.referrer;
+                window.location.href = document.location.origin + '/cities';
             }
         });
     });
