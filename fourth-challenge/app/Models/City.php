@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class City extends Model
 {
@@ -24,11 +23,6 @@ class City extends Model
     {
         return 0;
         //return Flight::where('city_departure_id', $this->id)->count();
-    }
-
-    public function airlines(): HasMany
-    {
-        return $this->hasMany(Airline::class);
     }
 
 }
