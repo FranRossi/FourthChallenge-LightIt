@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     if(response.ok) {
                         window.location.href = document.location.origin + '/airlines';
                     } else if (response.status === 405) {
-                        throw new Error('There was an error validating Airline\'s new name. Please try again.');
-                    } else {
+                        throw new Error('The new airline\'s name did not pass validation');
+                    }else {
                         throw new Error('Airline could not be edited');
                     }
                 })

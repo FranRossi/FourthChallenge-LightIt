@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\CityController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,3 @@ Route::prefix('airlines')->group(function () {
 });
 
 
-
-Route::get('flights', [view('components.date')]);

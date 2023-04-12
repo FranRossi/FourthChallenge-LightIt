@@ -25,7 +25,7 @@ class StoreUpdateAirlineRequest extends FormRequest
     {
         $airline = $airline ?? new Airline();
         return [
-            'name' => ['required', Rule::unique('airlines', 'name')->ignore($airline), 'min:3', 'max:255'],
+            'name' => ['required', Rule::unique('airlines', 'name')->ignore($airline)],
         ];
     }
 }
