@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Airline;
+use App\Models\City;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,9 @@ class FlightFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'airline_id' => Airline::get()->random()->id,
+            'city_departure_id' => City::get()->random()->id,
+            'city_arrival_id' => City::get()->whereNotIn('id', 'city_departure_id')->random()->id,
         ];
     }
 }
