@@ -16,14 +16,12 @@ class City extends Model
     // Accessors
     public function getFlightsArrivingAttribute()
     {
-        return 0;
-        //return Flight::where('city_arrival_id', $this->id)->count();
+        return Flight::where('city_arrival_id', $this->id)->count();
     }
 
     public function getFlightsDepartingAttribute()
     {
-        return 0;
-        //return Flight::where('city_departure_id', $this->id)->count();
+        return Flight::where('city_departure_id', $this->id)->count();
     }
 
     public function airlines(): BelongsToMany
@@ -33,7 +31,7 @@ class City extends Model
 
     public function flights()
     {
-        return $this->belongsToMany(Flight::class);
+        return $this->hasMany(Flight::class);
     }
 
 }

@@ -19,12 +19,11 @@
                 </th>
             </tr>
             </thead>
-            <x-table-body :objects="$objects"/>
-{{--            @if($name == 'Cities')--}}
-{{--                <x-city.table-body :cities="$objects"/>--}}
-{{--            @elseif($name == 'Airlines')--}}
-{{--                <x-table-body :objects="$objects"/>--}}
-{{--            @endif--}}
+            @if($name == 'Flights')
+                <x-flight.table-body :flights="$objects"/>
+            @else
+                <x-table-body :objects="$objects"/>
+            @endif
 
         </table>
     </div>

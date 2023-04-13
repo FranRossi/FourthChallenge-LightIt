@@ -16,8 +16,8 @@ class Airline extends Model
     // Accessors
     public function getAmountOfFlightsAttribute()
     {
-        return 0;
-        //return Flight::where('city_arrival_id', $this->id)->count();
+
+        return Flight::where('airline_id', $this->id)->count();
     }
 
     public function cities(): BelongsToMany
