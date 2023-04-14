@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('flights', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('airline_id')->cascadeOnDelete()->constrained('airlines');
-            $table->foreignId('city_departure_id')->cascadeOnDelete()->constrained('cities');
-            $table->foreignId('city_arrival_id')->cascadeOnDelete()->constrained('cities');
+            $table->foreignId('airline_id')->constrained('airlines')->onDelete('cascade');
+            $table->foreignId('city_departure_id')->constrained('cities')->onDelete('cascade');
+            $table->foreignId('city_arrival_id')->constrained('cities')->onDelete('cascade');
             $table->timestamps();
         });
     }
