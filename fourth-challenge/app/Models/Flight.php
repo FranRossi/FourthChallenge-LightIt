@@ -27,4 +27,5 @@ class Flight extends Model
     {
         return $this->belongsTo(City::class, 'city_arrival_id');
     }
+
 }

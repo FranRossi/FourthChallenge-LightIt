@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFlightRequest;
 use App\Http\Requests\UpdateFlightRequest;
+use App\Models\City;
 use App\Models\Flight;
 
 class FlightController extends Controller
@@ -18,6 +19,7 @@ class FlightController extends Controller
     {
         return view('components.index',[
             'objects' => Flight::orderByDesc('id')->paginate($this->flightsPerPage),
+            'cities' => City::all(),
             'name' => 'Flights',
             'columnsToSort' => $this->columnsToSort,
             'columns' => $this->columns
@@ -69,6 +71,6 @@ class FlightController extends Controller
      */
     public function destroy(Flight $flight)
     {
-        //
+        $flight->delete();
     }
 }

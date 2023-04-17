@@ -9,6 +9,10 @@
     <script src="https://unpkg.com/vue@3"></script>
     <script src="https://unpkg.com/@vuepic/vue-datepicker@latest"></script>
     <link rel="stylesheet" href="https://unpkg.com/@vuepic/vue-datepicker@latest/dist/main.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+{{--    Dropdown SELECT2--}}
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 
 

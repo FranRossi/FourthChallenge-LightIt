@@ -1,4 +1,3 @@
-<x-layout>
 
     <div id="date">
         <Datepicker>
@@ -11,5 +10,3 @@
             components: { Datepicker: VueDatePicker },
         }).mount("#date");
     </script>
-
-</x-layout>

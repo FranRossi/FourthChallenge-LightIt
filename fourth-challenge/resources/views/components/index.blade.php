@@ -4,15 +4,18 @@
         <main>
             <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <div class="px-4 sm:px-6 lg:px-8">
-                    <div class="sm:flex sm:items-center">
-                        <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900">{{$name}}</h1>
-                            <p class="mt-2 text-sm text-gray-700">A list of all the {{$name}} in <strong>AirTour</strong>.</p>
-                        </div>
+                    <div class="sm:flex nowrap sm:items-end">
+                        @if($name == 'Flights')
+                            <x-flight.table-top-section :objects="$objects" :cities="$cities" :columns="$columns" :columnsToSort="$columnsToSort" :name="$name"/>
+                        @else
+                            <div class="sm:flex-auto">
+                                <h1 class="text-base font-semibold leading-6 text-gray-900">{{$name}}</h1>
+                                <p class="mt-2 text-sm text-gray-700">A list of all the {{$name}} in <strong>AirTour</strong>.</p>
+                            </div>
 
-                        <form class="create-form sm:flex justify-end">
+                         <form class="create-form sm:flex justify-end">
                             @csrf
-                            <div class="flex flex-col sm:flex-row sm:items-center">
+                            <div class="flex flex-col sm:flex-row sm:items-end">
                                 <div class="sm:w-full sm:mr-4">
                                     <label for="new-{{$name}}-name" class="sr-only">Name of the {{$name}}</label>
                                     <div class="flex items-center border rounded-md shadow-sm ring-1 ring-inset ring-gray-300 py-3 px-2">
@@ -35,6 +38,7 @@
                                 </div>
                             </div>
                         </form>
+                        @endif
                     </div>
                     <div>
                         <x-table :objects="$objects" :columns="$columns" :columnsToSort="$columnsToSort" :name="$name">
