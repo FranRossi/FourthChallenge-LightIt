@@ -1,6 +1,6 @@
 @props(['name', 'object'])
 <div class="sm:col-span-1 ">
-    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">{{$name}}</label>
+    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">{{ucwords($name)}}</label>
     <div class="mt-2">
         <input type="text"
                name="{{$name}}"

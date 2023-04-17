@@ -19,7 +19,6 @@ class FlightController extends Controller
     {
         return view('components.index',[
             'objects' => Flight::orderByDesc('id')->paginate($this->flightsPerPage),
-            'cities' => City::all(),
             'name' => 'Flights',
             'columnsToSort' => $this->columnsToSort,
             'columns' => $this->columns
@@ -51,26 +50,24 @@ class FlightController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Flight $flight)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateFlightRequest $request, Flight $flight)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Flight $flight)
     {
         $flight->delete();
+    }
+
+    /**
+     * @return array
+     */
+    public function cities()
+    {
+        return view('components.index',[
+            'objects' => Flight::orderByDesc('id')->paginate($this->flightsPerPage),
+            'cities' => City::all(),
+            'name' => 'Flights',
+            'columnsToSort' => $this->columnsToSort,
+            'columns' => $this->columns
+        ]);
     }
 }

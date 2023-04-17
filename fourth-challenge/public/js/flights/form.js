@@ -1,17 +1,12 @@
 $(document).ready(function () {
-    // $('.dropdown-container').select2({
-    //     ajax: {
-    //         url: 'cities',
-    //         method: 'GET',
-    //         processResults: function (data) {
-    //             // Transforms the top-level key of the response object from 'items' to 'results'
-    //             return {
-    //                 results: data.items
-    //             };
-    //         }
-    //     }
-    // });
+    $('.dropdown-container').select2({
+        ajax: {
+            url: 'flights/cities',
+            method: 'GET',
+        }
+    });
 });
+
 
 
 $(document).ready(function() {

@@ -6,7 +6,7 @@
                 <div class="px-4 sm:px-6 lg:px-8">
                     <div class="sm:flex nowrap sm:items-end">
                         @if($name == 'Flights')
-                            <x-flight.table-top-section :objects="$objects" :cities="$cities" :columns="$columns" :columnsToSort="$columnsToSort" :name="$name"/>
+                            <x-flight.table-top-section :objects="$objects" :columns="$columns" :columnsToSort="$columnsToSort" :name="$name"/>
                         @else
                             <div class="sm:flex-auto">
                                 <h1 class="text-base font-semibold leading-6 text-gray-900">{{$name}}</h1>
