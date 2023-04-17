@@ -19,9 +19,9 @@
                 </th>
             </tr>
             </thead>
-            @if($name == 'Cities')
-                <x-city.table-body :cities="$objects"/>
-            @elseif($name == 'Airlines')
+            @if($name == 'Flights')
+                <x-flight.table-body :flights="$objects"/>
+            @else
                 <x-table-body :objects="$objects"/>
             @endif
 

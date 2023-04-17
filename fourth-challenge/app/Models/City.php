@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class City extends Model
 {
@@ -16,19 +16,22 @@ class City extends Model
     // Accessors
     public function getFlightsArrivingAttribute()
     {
-        return 0;
-        //return Flight::where('city_arrival_id', $this->id)->count();
+        return Flight::where('city_arrival_id', $this->id)->count();
     }
 
     public function getFlightsDepartingAttribute()
     {
-        return 0;
-        //return Flight::where('city_departure_id', $this->id)->count();
+        return Flight::where('city_departure_id', $this->id)->count();
     }
 
-    public function airlines(): HasMany
+    public function airlines(): BelongsToMany
     {
-        return $this->hasMany(Airline::class);
+        return $this->belongsToMany(Airline::class);
+    }
+
+    public function flights()
+    {
+        return $this->hasMany(Flight::class);
     }
 
 }

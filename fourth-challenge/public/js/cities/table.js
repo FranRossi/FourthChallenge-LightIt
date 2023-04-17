@@ -3,9 +3,9 @@ $(document).ready(function() {
     $('.delete-form').on('submit', function(e) {
         e.preventDefault();
 
-        let formId = $(this).closest('form').attr('id');
-        let parentRow = $(this).closest('tr');
-        let formData = $('.delete-form').serialize();
+        const formId = $(this).closest('form').attr('id');
+        const parentRow = $(this).closest('tr');
+        const formData = $('.delete-form').serialize();
         $.ajax({
             url: 'cities' + '/' + formId,
             type: 'DELETE',

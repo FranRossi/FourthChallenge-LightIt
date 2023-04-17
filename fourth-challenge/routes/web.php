@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('cities')->group(function () {
@@ -21,4 +22,6 @@ Route::prefix('airlines')->group(function () {
     Route::get('/{airline}/edit', [AirlineController::class, 'edit']);
 });
 
+Route::get('flights', [FlightController::class, 'index']);
+Route::delete('flights/{flight}', [FlightController::class, 'destroy']);
 
