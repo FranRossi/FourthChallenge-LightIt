@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFlightRequest;
-use App\Http\Requests\UpdateFlightRequest;
 use App\Models\City;
 use App\Models\Flight;
+use App\View\Components\FlightTableBody;
 
 class FlightController extends Controller
 {
@@ -57,17 +57,9 @@ class FlightController extends Controller
         $flight->delete();
     }
 
-    /**
-     * @return array
-     */
     public function cities()
     {
-        return view('components.index',[
-            'objects' => Flight::orderByDesc('id')->paginate($this->flightsPerPage),
-            'cities' => City::all(),
-            'name' => 'Flights',
-            'columnsToSort' => $this->columnsToSort,
-            'columns' => $this->columns
-        ]);
+        $cityFilter = request()->input('filter');
+        return FlightTableBody::renderFlights(Flight::where('city_departure_id', '=', $cityFilter)->get());
     }
 }

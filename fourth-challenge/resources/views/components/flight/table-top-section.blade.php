@@ -1,4 +1,4 @@
-@props(['objects', 'columns', 'columnsToSort', 'name'])
+@props(['columns', 'columnsToSort', 'name'])
 <div class="sm:flex-auto">
     <h1 class="text-base font-semibold leading-6 text-gray-900 py-2">Departure city </h1>
     <x-city-dropdown typeOfCity="departure-city"/>
