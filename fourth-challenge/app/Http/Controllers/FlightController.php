@@ -30,7 +30,7 @@ class FlightController extends Controller
      */
     public function create()
     {
-        //
+        return view('components.flight.create-form');
     }
 
     /**
