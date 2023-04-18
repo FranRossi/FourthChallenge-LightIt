@@ -28,7 +28,14 @@ $(document).ready(function() {
                 window.location.href = document.location.origin + '/flights';
             })
             .catch(error => {
-                alert('Error: ' + error.message);
+                if(error.response.status === 422) {
+                    let errors = error.response.data.errors;
+                    let errorMessages = '';
+                    for(let key in errors) {
+                        errorMessages += errors[key] + ' ';
+                    }
+                    alert(errorMessages);
+                }
             });
     });
 });
