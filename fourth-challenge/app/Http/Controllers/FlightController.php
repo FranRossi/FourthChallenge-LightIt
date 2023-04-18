@@ -38,7 +38,7 @@ class FlightController extends Controller
      */
     public function store(StoreFlightRequest $request)
     {
-        //
+        Flight::create($request->validated());
     }
 
     /**

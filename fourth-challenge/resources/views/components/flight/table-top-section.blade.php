@@ -21,4 +21,4 @@
         </a>
 
 </div>
-<script src="{{ asset('js/flights/form.js') }}"></script>
+<script src="{{ asset('js/flights/table.js') }}"></script>

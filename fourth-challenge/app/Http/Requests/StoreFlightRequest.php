@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Flight;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreFlightRequest extends FormRequest
@@ -22,7 +23,11 @@ class StoreFlightRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'airline_id' => ['required', 'exists:airlines,id'],
+            'city_departure_id' => ['required', 'exists:cities,id'],
+            'city_arrival_id' => ['required', 'exists:cities,id', 'different:city_departure_id'],
+            'departure_date' => ['required', 'date'],
+            'arrival_date' => ['required', 'date', 'after:departure_date'],
         ];
     }
 }

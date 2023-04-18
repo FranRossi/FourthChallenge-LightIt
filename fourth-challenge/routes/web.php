@@ -24,6 +24,7 @@ Route::prefix('airlines')->group(function () {
 
 Route::prefix('flights')->group(function () {
     Route::get('/', [FlightController::class, 'index']);
+    Route::post('/', [FlightController::class, 'store']);
     Route::delete('/{flight}', [FlightController::class, 'destroy']);
     Route::get('/cities', [FlightController::class, 'citiesFilter']);
     Route::get('/airlines', [FlightController::class, 'airlinesFilter']);

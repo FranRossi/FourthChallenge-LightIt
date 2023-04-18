@@ -14,20 +14,6 @@
                 <div class="px-4 py-6 sm:p-8">
                     <div class="grid max-w-sm grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-1">
                         <div class="sm:col-span-1 ">
-                            <label for="name" class="block text-sm font-medium leading-6 text-gray-900">New flight's name</label>
-                            <div class="mt-2">
-                                <input type="text"
-                                       name="flight"
-                                       id="flightId"
-                                       class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                       required
-                                >
-                                @error('flight')
-                                <p class="text-red-500 text-xs italic">Error in flight</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="sm:col-span-1 ">
                             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Departure city</label>
                             <div class="mt-2">
                                 <x-city-dropdown typeOfCity="departure"/>
@@ -63,7 +49,7 @@
                             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Departure date</label>
                             <div class="mt-2">
                                 <input type="date"
-                                       name="departureDate"
+                                       name="departure_date"
                                        id="departureDate"
                                        class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                        required
@@ -77,7 +63,7 @@
                             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Arrival date</label>
                             <div class="mt-2">
                                 <input type="date"
-                                       name="arrivalDate"
+                                       name="arrival_date"
                                        id="arrivalDate"
                                        class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                        required
