@@ -57,7 +57,7 @@ class FlightController extends Controller
         $flight->delete();
     }
 
-    public function cities()
+    public function citiesFilter()
     {
         $cityType = request()->input('type');
         $cityFilter = request()->input('filter');
@@ -66,5 +66,11 @@ class FlightController extends Controller
         }else{
             return FlightTableBody::renderFlights(Flight::where('city_arrival_id', '=', $cityFilter)->get());
         }
+    }
+
+    public function airlinesFilter()
+    {
+        $airlineFilter = request()->input('filter');
+        return FlightTableBody::renderFlights(Flight::where('airline_id', '=', $airlineFilter)->get());
     }
 }

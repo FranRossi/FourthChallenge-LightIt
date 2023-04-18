@@ -5,9 +5,12 @@ $(document).ready(function () {
 
 $('.dropdown-container').on('select2:select', function(e) {
     let selectedOption = e.params.data;
-    let typeOfCity = e.target.id;
-    let selectedValue = selectedOption.id;
-    let url = '/flights/cities?type=' + typeOfCity + '&filter=' + selectedValue;
+    let typeOfDropdown = e.target.id;
+    let idOfSelectedValue = selectedOption.id;
+    let resourceFilter = (typeOfDropdown === 'airlineDropdown') ? 'airlines' : 'cities';
+
+    let url = '/flights/' + resourceFilter + '?type=' + typeOfDropdown + '&filter=' + idOfSelectedValue;
+
     $.ajax({
         url: url,
         method: 'GET',
@@ -52,5 +55,18 @@ $(document).ready(function() {
             .catch(error => {
                 alert('Error: ' + error.message);
             });
+    });
+});
+
+
+$(document).ready(function() {
+    $('.cancel-button').click(function(e) {
+        e.preventDefault();
+
+        $.ajax({
+            success: function() {
+                window.location.href = document.location.origin + '/flights';
+            }
+        });
     });
 });

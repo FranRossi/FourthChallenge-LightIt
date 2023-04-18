@@ -5,11 +5,11 @@
 
         <div class="grid grid-cols-1 gap-y-8 gap-x-8 pt-10 sm:grid-cols-3">
             <div class="px-4 sm:px-0">
-                <h2 class="text-base font-semibold leading-7 text-gray-900">Create a flight</h2>
+                <h2 class="text-base font-semibold leading-7 text-gray-900">Create a new flight</h2>
                 <p class="mt-1 text-sm leading-6 text-gray-600">This information will be publicly display.</p>
             </div>
 
-            <form class="edit-form bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-1" id="flightForm">
+            <form class="create-form bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-1" id="flightForm">
                 @csrf
                 <div class="px-4 py-6 sm:p-8">
                     <div class="grid max-w-sm grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-1">
@@ -55,6 +55,10 @@
                                 @enderror
                             </div>
                         </div>
+                        {{--<div class="sm:flex-auto">--}}
+                        {{--    <h1 class="text-base font-semibold leading-6 text-gray-900 py-2">Date</h1>--}}
+                        {{--    <x-date-picker/>--}}
+                        {{--</div>--}}
                         <div class="sm:col-span-1 ">
                             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Departure date</label>
                             <div class="mt-2">
