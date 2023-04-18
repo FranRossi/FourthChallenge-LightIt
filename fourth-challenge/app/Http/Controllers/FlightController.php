@@ -59,7 +59,12 @@ class FlightController extends Controller
 
     public function cities()
     {
+        $cityType = request()->input('type');
         $cityFilter = request()->input('filter');
-        return FlightTableBody::renderFlights(Flight::where('city_departure_id', '=', $cityFilter)->get());
+        if ($cityType === 'departure') {
+            return FlightTableBody::renderFlights(Flight::where('city_departure_id', '=', $cityFilter)->get());
+        }else{
+            return FlightTableBody::renderFlights(Flight::where('city_arrival_id', '=', $cityFilter)->get());
+        }
     }
 }

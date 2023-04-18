@@ -4,17 +4,15 @@ $(document).ready(function () {
 });
 
 $('.dropdown-container').on('select2:select', function(e) {
-    var selectedOption = e.params.data;
-    var selectedValue = selectedOption.id;
-
-    var url = '/flights/cities?filter=' + selectedValue;
-
+    let selectedOption = e.params.data;
+    let typeOfCity = e.target.id;
+    let selectedValue = selectedOption.id;
+    let url = '/flights/cities?type=' + typeOfCity + '&filter=' + selectedValue;
     $.ajax({
         url: url,
         method: 'GET',
         success: function(flights) {
             //UpdateDropdown(data[0]);
-            console.log(flights);
             UpdateTableBody(flights);
         },
         error: function(error) {
@@ -23,6 +21,11 @@ $('.dropdown-container').on('select2:select', function(e) {
     });
 });
 
+function UpdateTableBody(flightsFiltered) {
+    let body = $('#table-body-flights');
+    body.replaceWith(flightsFiltered);
+}
+
 function UpdateDropdown(city) {
     let dropdown = $('.dropdown-container');
     let id = city.id;
@@ -30,25 +33,6 @@ function UpdateDropdown(city) {
     dropdown.empty();
     dropdown.append('<option value="' + id + '">' + name + '</option>');
 }
-
-function UpdateTableBody(flightsFiltered) {
-    let body = $('#table-body-flights');
-    body.replaceWith(flightsFiltered);
-}
-
-
-/*
-
-
-            <form class="delete-form" id="{{$flight->id}}" >
-                @csrf
-                <button type="submit" class="delete-button text-sm text-red-400">
-                    Delete
-                </button>
-            </form>
-        </td>
-    </tr>
- */
 
 $(document).ready(function() {
     $('.delete-form').on('submit', function(e) {
