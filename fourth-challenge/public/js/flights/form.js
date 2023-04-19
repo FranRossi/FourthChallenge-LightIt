@@ -3,6 +3,10 @@ $(document).ready(function () {
     });
 });
 
+toastr.options = {
+    closeButton: true,
+    progressBar: true,
+};
 
 $(document).ready(function() {
     $('.create-form').on('submit', function(e) {
@@ -11,8 +15,8 @@ $(document).ready(function() {
         let arrivalCity = $('#arrival').val();
         let airline = $('#airlineDropdown').val();
         const token = document.querySelector("input[name='_token']").value;
-        let departureDate = departure.departure.toISOString().slice(0, 10);
-        let arrivalDate = arrival.arrival.toISOString().slice(0, 10);
+        let departureDate = departure.departure ? departure.departure.toISOString().slice(0, 10) : null;
+        let arrivalDate = arrival.arrival ? arrival.arrival.toISOString().slice(0, 10) : null;
 
         axios.post('/flights', {
             headers: {
@@ -26,6 +30,7 @@ $(document).ready(function() {
 
         })
             .then(response => {
+                toastr.success('Flight has been created successfully!');
                 window.location.href = document.location.origin + '/flights';
             })
             .catch(error => {
@@ -35,7 +40,7 @@ $(document).ready(function() {
                     for(let key in errors) {
                         errorMessages += errors[key] + ' ';
                     }
-                    alert(errorMessages);
+                    toastr.error(errorMessages);
                 }
             });
     });
