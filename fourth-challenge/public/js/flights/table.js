@@ -45,15 +45,15 @@ $(document).ready(function() {
         toastr.warning(`Are you sure you want to delete flight with ID ${formId}?
          <br/><br/>
          <div class="text-center">
-             <button type="button" id="yesBtn" class="btn btn-danger btn-sm border px-3 hover:bg-red-600">Yes</button>
-             <button type="button" id="noBtn" class="btn btn-secondary btn-sm border px-3 ml-4 hover:bg-gray-600">No</button>
+             <button type="button" id="accept" class="btn btn-danger btn-sm border px-3 hover:bg-red-600">Yes</button>
+             <button type="button" id="cancel" class="btn btn-secondary btn-sm border px-3 ml-4 hover:bg-gray-600">No</button>
          </div>`,
             'Delete Flight', { timeOut: 0, closeButton: false, tapToDismiss: false, rtl: false });
-        $('#yesBtn').on('click', function () {
+        $('#accept').on('click', function () {
             confirmDelete(formId,parentRow, token);
             toastr.remove();
         });
-        $('#noBtn').on('click', function () {
+        $('#cancel').on('click', function () {
             toastr.remove();
         });
     });
