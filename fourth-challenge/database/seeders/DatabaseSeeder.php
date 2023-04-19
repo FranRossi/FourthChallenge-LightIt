@@ -18,7 +18,5 @@ class DatabaseSeeder extends Seeder
         City::factory(10)->create();
         Airline::factory(10)->create();
         Flight::factory(15)->create();
-
-
     }
 }

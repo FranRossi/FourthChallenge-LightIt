@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreFlightRequest;
-use App\Http\Requests\UpdateFlightRequest;
 use App\Models\City;
 use App\Models\Flight;
+use App\View\Components\FlightTableBody;
 
 class FlightController extends Controller
 {
@@ -19,7 +19,6 @@ class FlightController extends Controller
     {
         return view('components.index',[
             'objects' => Flight::orderByDesc('id')->paginate($this->flightsPerPage),
-            'cities' => City::all(),
             'name' => 'Flights',
             'columnsToSort' => $this->columnsToSort,
             'columns' => $this->columns
@@ -31,7 +30,7 @@ class FlightController extends Controller
      */
     public function create()
     {
-        //
+        return view('components.flight.create-form');
     }
 
     /**
@@ -39,7 +38,7 @@ class FlightController extends Controller
      */
     public function store(StoreFlightRequest $request)
     {
-        //
+        Flight::create($request->validated());
     }
 
     /**
@@ -51,26 +50,27 @@ class FlightController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Flight $flight)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateFlightRequest $request, Flight $flight)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Flight $flight)
     {
         $flight->delete();
+    }
+
+    public function citiesFilter()
+    {
+        $cityType = request()->input('type');
+        $cityFilter = request()->input('filter');
+        if ($cityType === 'departure') {
+            return FlightTableBody::renderFlights(Flight::where('city_departure_id', '=', $cityFilter)->get());
+        }else{
+            return FlightTableBody::renderFlights(Flight::where('city_arrival_id', '=', $cityFilter)->get());
+        }
+    }
+
+    public function airlinesFilter()
+    {
+        $airlineFilter = request()->input('filter');
+        return FlightTableBody::renderFlights(Flight::where('airline_id', '=', $airlineFilter)->get());
     }
 }

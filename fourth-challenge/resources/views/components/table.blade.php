@@ -11,9 +11,11 @@
                 @foreach($columns as $col)
                     <x-table-header :name="$col" />
                 @endforeach
-                <th scope="col" class="relative px-3 py-3.5">
-                    <span class="sr-only">Edit</span>
-                </th>
+                @if($name != 'Flights')
+                    <th scope="col" class="relative px-3 py-3.5">
+                        <span class="sr-only">Edit</span>
+                    </th>
+                @endif
                 <th scope="col" class="relative px-3 py-3.5">
                     <span class="sr-only">Delete</span>
                 </th>
