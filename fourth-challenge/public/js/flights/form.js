@@ -15,8 +15,8 @@ $(document).ready(function() {
         let arrivalCity = $('#arrival').val();
         let airline = $('#airlineDropdown').val();
         const token = document.querySelector("input[name='_token']").value;
-        let departureDate = departure.departure ? departure.departure.toISOString().slice(0, 10) : null;
-        let arrivalDate = arrival.arrival ? arrival.arrival.toISOString().slice(0, 10) : null;
+        const departureDate = departure.departure?.toISOString().slice(0, 10);
+        const arrivalDate = arrival.arrival?.toISOString().slice(0, 10);
 
         axios.post('/flights', {
             headers: {

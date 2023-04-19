@@ -26,7 +26,7 @@ class StoreFlightRequest extends FormRequest
             'airline_id' => ['required', 'exists:airlines,id'],
             'city_departure_id' => ['required', 'exists:cities,id'],
             'city_arrival_id' => ['required', 'exists:cities,id', 'different:city_departure_id'],
-            'departure_date' => ['required', 'date', 'before:arrival_date'],
+            'departure_date' => ['required', 'date', 'before_or_equal:arrival_date'],
             'arrival_date' => ['required', 'date', 'after_or_equal:departure_date'],
         ];
     }
