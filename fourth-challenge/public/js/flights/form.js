@@ -10,9 +10,10 @@ $(document).ready(function() {
         let departureCity = $('#departure').val();
         let arrivalCity = $('#arrival').val();
         let airline = $('#airlineDropdown').val();
-        let departureDate = $('#departureDate').val();
-        let arrivalDate = $('#arrivalDate').val();
         const token = document.querySelector("input[name='_token']").value;
+        let departureDate = departure.departure.toISOString().slice(0, 10);
+        let arrivalDate = arrival.arrival.toISOString().slice(0, 10);
+
         axios.post('/flights', {
             headers: {
                 'X-CSRF-TOKEN': token

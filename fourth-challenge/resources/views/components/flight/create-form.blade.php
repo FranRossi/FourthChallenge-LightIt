@@ -41,19 +41,10 @@
                                 @enderror
                             </div>
                         </div>
-                        {{--<div class="sm:flex-auto">--}}
-                        {{--    <h1 class="text-base font-semibold leading-6 text-gray-900 py-2">Date</h1>--}}
-                        {{--    <x-date-picker/>--}}
-                        {{--</div>--}}
                         <div class="sm:col-span-1 ">
                             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Departure date</label>
                             <div class="mt-2">
-                                <input type="date"
-                                       name="departure_date"
-                                       id="departureDate"
-                                       class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                       required
-                                >
+                                <x-date-picker :typeOfCity="'departure'"/>
                                 @error('departureDate')
                                 <p class="text-red-500 text-xs italic">Error in departureDate</p>
                                 @enderror
@@ -62,12 +53,7 @@
                         <div class="sm:col-span-1 ">
                             <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Arrival date</label>
                             <div class="mt-2">
-                                <input type="date"
-                                       name="arrival_date"
-                                       id="arrivalDate"
-                                       class="block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                       required
-                                >
+                                <x-date-picker :typeOfCity="'arrival'"/>
                                 @error('arrivalDate')
                                 <p class="text-red-500 text-xs italic">Error in arrivalDate</p>
                                 @enderror
