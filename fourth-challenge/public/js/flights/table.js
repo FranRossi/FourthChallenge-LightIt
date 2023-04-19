@@ -29,6 +29,12 @@ function UpdateTableBody(flightsFiltered) {
     body.replaceWith(flightsFiltered);
 }
 
+
+toastr.options = {
+    closeButton: true,
+    progressBar: true,
+};
+
 $(document).ready(function() {
     $('.delete-form').on('submit', function(e) {
         e.preventDefault();
@@ -36,16 +42,34 @@ $(document).ready(function() {
         const formId = $(this).closest('form').attr('id');
         const parentRow = $(this).closest('tr');
         const token = document.querySelector("input[name='_token']").value;
-        axios.delete('flights/' + formId, {
-            headers: {
-                'X-CSRF-TOKEN': token
-            }
-        })
-            .then(response => {
-                parentRow.remove();
-            })
-            .catch(error => {
-                alert('Error: ' + error.message);
-            });
+        toastr.warning(`Are you sure you want to delete flight with ID ${formId}?
+         <br/><br/>
+         <div class="text-center">
+             <button type="button" id="yesBtn" class="btn btn-danger btn-sm border px-3 hover:bg-red-600">Yes</button>
+             <button type="button" id="noBtn" class="btn btn-secondary btn-sm border px-3 ml-4 hover:bg-gray-600">No</button>
+         </div>`,
+            'Delete Flight', { timeOut: 0, closeButton: false, tapToDismiss: false, rtl: false });
+        $('#yesBtn').on('click', function () {
+            confirmDelete(formId,parentRow, token);
+            toastr.remove();
+        });
+        $('#noBtn').on('click', function () {
+            toastr.remove();
+        });
     });
 });
+
+function confirmDelete(formId, parentRow, token){
+    axios.delete('flights/' + formId, {
+        headers: {
+            'X-CSRF-TOKEN': token
+        }
+    })
+        .then(response => {
+            toastr.success('Flight has been deleted successfully!');
+            parentRow.remove();
+        })
+        .catch(error => {
+            alert('Error: ' + error.message);
+        });
+}
