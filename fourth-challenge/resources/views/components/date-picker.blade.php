@@ -1,7 +1,7 @@
 @props(['typeOfCity'])
 
 <div id="{{ $typeOfCity === 'departure' ? 'date1' : 'date2' }}">
-    <Datepicker v-model="{{ $typeOfCity === 'departure' ? 'departure' : 'arrival' }}">
+    <Datepicker v-model="{{ $typeOfCity }}">
     </Datepicker>
 </div>
 
