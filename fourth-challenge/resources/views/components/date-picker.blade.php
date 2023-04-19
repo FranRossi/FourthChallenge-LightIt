@@ -1,25 +1,18 @@
+@props(['typeOfCity'])
 
-    <div id="date">
-        <Datepicker range :min-date="minDate" ref="onDateSelected">
-        </Datepicker>
-    </div>
+<div id="{{ $typeOfCity === 'departure' ? 'date1' : 'date2' }}">
+    <Datepicker v-model="{{ $typeOfCity }}">
+    </Datepicker>
+</div>
 
-    <script>
-
-        const app = Vue.createApp({
-            components: { Datepicker: VueDatePicker },
-            data() {
-                return {
-                    minDate: null,
-                }
-            },
-            methods: {
-                onDateSelected(date) {
-                    console.log(date);
-                    if (!this.minDate){
-                        this.minDate = date;
-                    }
-                }
+<script>
+    const {{ $typeOfCity }} = Vue.createApp({
+        components: { Datepicker: VueDatePicker },
+        data() {
+            return {
+                arrival: null,
+                departure: null,
             }
-        }).mount("#date");
-    </script>
+        },
+    }).mount("#{{ $typeOfCity === 'departure' ? 'date1' : 'date2' }}");
+</script>

@@ -70,6 +70,6 @@ function confirmDelete(formId, parentRow, token){
             parentRow.remove();
         })
         .catch(error => {
-            alert('Error: ' + error.message);
+            toastr.error('There was an error deleting the flight!');
         });
 }
